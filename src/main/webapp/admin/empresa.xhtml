@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+<h:body>
+	<ui:composition template="pages/template/layout.xhtml">
+		<ui:param name="title" value="Cadastro de Empresa" />
+		<ui:define name="content">
+
+			<p:commandButton value="Nova Empresa1" type="button"
+				onclick="PF('dlgEmpresa').show();" />
+
+			<h1>Empresa</h1>
+
+
+			<p:commandButton value="Nova Empresa2" type="button" ajax="true"
+				oncomplete="PF('dlgEmpresa').show();" />
+
+			<p:dataTable id="dataTable" var="data"
+				value="#{empresaBean.getList()}">
+				<p:column headerText="Cod.">
+					<h:outputText value="#{data.codEmpresa}" />
+				</p:column>
+
+				<p:column headerText="Nome">
+					<h:outputText value="#{data.nome}" />
+				</p:column>
+
+				<p:column headerText="">
+					<p:commandButton value="Editar" type="button" id="btnEditar" onclick="PF('dlgEmpresa').show()" update="dlgEmpresa"
+						actionListener="#{empresaBean.edit(data.codEmpresa)}"
+						styleClass="ui-priority-primary" />
+				</p:column>
+			</p:dataTable>
+
+			<p:dialog header="Empresa" widgetVar="dlgEmpresa" modal="true"
+				width="600px">
+				<h:form>
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
+						
+					<p:panel header="Nome" style="margin:0.2em">
+						<p:inputText id="Nome" value="#{empresaBean.empresa.nome}" />
+					</p:panel>
+
+					<p:commandButton value="Salvar" id="btnSalvar" ajax="true"
+						actionListener="#{empresaBean.saveOrUpdate()}" update="dataTable"
+						styleClass="ui-priority-primary" />
+				</h:form>
+			</p:dialog>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

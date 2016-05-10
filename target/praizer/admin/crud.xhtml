@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Archetype - JSF</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</h:head>
+<h:body>
+	<h1>CRUD</h1>
+
+	<div>
+		<h:outputText value="Bem vindo: #{authController.user.username}" />
+	</div>
+	<div>Roles</div>
+	<ui:repeat var="data" value="#{authController.user.roles}"
+		varStatus="status">
+		<div>#{data.name}</div>
+	</ui:repeat>
+
+	<h:form id="formSave">
+		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
+		<div style="float: right">
+				
+				<a href="${facesContext.externalContext.requestContextPath}/logout">logout</a>
+		</div>
+		<p:panel id="basic" header="Salvar" style="margin-bottom:20px">
+			<h:panelGrid columns="2" cellpadding="10">
+				<h:outputText value="Nome: " />
+				<p:inputText id="nome" value="#{crudBean.pessoa.nome}" />
+
+				<h:outputText value="Idade: " />
+				<p:inputText id="idade" value="#{crudBean.pessoa.telefone}" />
+
+				<p:commandButton value="Salvar" id="btnSalvar" ajax="false"
+					actionListener="#{crudBean.saveOrUpdate}"
+					styleClass="ui-priority-primary" />
+
+			</h:panelGrid>
+		</p:panel>
+	</h:form>
+
+	<p:dataTable var="data" value="#{crudBean.getList()}">
+		<p:column headerText="Nome">
+			<h:outputText value="#{data.nome}" />
+		</p:column>
+
+		<p:column headerText="Telefone">
+			<h:outputText value="#{data.telefone}" />
+		</p:column>
+
+	</p:dataTable>
+
+
+</h:body>
+</html>

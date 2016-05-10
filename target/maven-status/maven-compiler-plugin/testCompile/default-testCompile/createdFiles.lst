@@ -1,0 +1,3 @@
+com\test\SendMailIntegrationTest.class
+com\test\InsertOrUpdateUserIntegrationTest.class
+com\test\InsertOrUpdateRoleIntegrationTest.class
