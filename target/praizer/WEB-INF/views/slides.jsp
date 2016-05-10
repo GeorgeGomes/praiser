@@ -2,7 +2,10 @@
 
 <div ng-app="praizer" ng-cloak style="background-color: #ffffff">
 	<div ng-controller="SlidesController as ctrl">
-		 Slides1
+		 <input type="text" name="musica" id="musica" placeholder="Qual música você quer?"/>
+		 <button type="button">Fazer upload da letra</button>
+		 <div style="border-bottom:2px dashed #f5f5f5"></div>
+		 <div>Preview</div>
 	</div>
 
 </div>
