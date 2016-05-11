@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<project name="maven-antrun-" default="main"  >
-<target name="main">
-  <copy file="target/praizer.war" tofile="C:/developer/servers/apache-tomcat-8.0.28/webapps/praizer.war"/>
-</target>
-</project>
