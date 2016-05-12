@@ -45,13 +45,13 @@ public class User {
              joinColumns = { @JoinColumn(name = "USER_ID") }, 
              inverseJoinColumns = { @JoinColumn(name = "USER_PROFILE_ID") })
 	private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
-
-	public Long getId() {
+	
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Long id) {
-		this.userId = id;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public String getEmail() {
