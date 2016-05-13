@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
 <div ng-app="praizer" ng-cloak style="background-color: #ffffff">
 	<div ng-controller="SignupController as ctrl">
 		<form name="myForm" ng-submit="ctrl.submitCreate()">

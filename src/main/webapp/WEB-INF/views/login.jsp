@@ -1,10 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <div ng-app="praizer" ng-cloak style="background-color: #ffffff">
 	<div ng-controller="LoginController as ctrl">
-		<form method="post" action="j_spring_security_check">
+		
+		<form:form method="POST" action="authentication" modelAttribute="user">
 			<div style="padding-top: 4em; padding-bottom: 4em; width: 100%">
 				<div style="max-width: 48em; margin: 0 auto">
+				${error}
 					<div style="margin: 0 auto; width: 22em; float: left">
 						<div style="margin-bottom: 0.8em">
 							<div style="color: #333333; font-weight: bold">E-mail</div>
@@ -35,7 +38,7 @@
 					</div>
 				</div>
 			</div>
-		</form>
+		</form:form>
 
 
 	</div>
@@ -43,15 +46,15 @@
 </div>
 
 <!-- Angular Material requires Angular.js Libraries -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
-<script src="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.0-rc4/angular-material.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script> -->
+<!-- <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script> -->
+<!-- <script src="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.0-rc4/angular-material.js"></script> -->
 
-<script src="<c:url value='/static/app/app.js' />"></script>
-<script src="<c:url value='/static/app/controller/login_controller.js' />"></script>
+<%-- <script src="<c:url value='/static/app/app.js' />"></script> --%>
+<%-- <script src="<c:url value='/static/app/controller/login_controller.js' />"></script> --%>
 
 

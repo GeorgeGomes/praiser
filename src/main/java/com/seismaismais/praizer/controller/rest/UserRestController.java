@@ -53,6 +53,7 @@ public class UserRestController{
 		logger.info("info ##### /rest/user - call method create user #####");
 		
 		UserProfile userProfile = new UserProfile();
+		userProfile.setId(2);
 		userProfile.setType("USER");
 		
 		Set<UserProfile> userProfiles = new HashSet<UserProfile>();

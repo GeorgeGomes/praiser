@@ -17,17 +17,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Qualifier("customUserDetailsService")
 	UserDetailsService userDetailsService;
 	
-	@Autowired
-	public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService);
-	}
+//	@Autowired
+//	public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
+//		auth.userDetailsService(userDetailsService);
+//	}
+//	
+//	@Override
+//	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//	    auth.userDetailsService(userDetailsService);
+//	}
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {	  
 		  http.authorizeRequests()
-		  	.antMatchers("/static/**").anonymous()
+		  	.antMatchers("/static/**").permitAll()
 		  	.antMatchers("/", "/home").permitAll()
 		  	.antMatchers("/rest/user").permitAll()
+		  	.antMatchers("/auth").permitAll()
 		  	
 		  	.antMatchers("/explore").authenticated()
 		  	//.anyRequest().authenticated()
@@ -38,7 +44,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	          .usernameParameter("email")
 	          .passwordParameter("password")
 	          .defaultSuccessUrl( "/" )
-	          .failureUrl("/login?error=")
+	          .failureUrl("/login?err=ops")
 	          .permitAll()
 	      .and()
 	      	.logout()
@@ -51,6 +57,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	      	.httpBasic()
 	      .and()
 	      	.csrf().disable();
-	  
 	}
 }
