@@ -1,16 +1,20 @@
 package com.seismaismais.praizer.auth.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.seismaismais.praizer.auth.dao.UserDao;
 import com.seismaismais.praizer.auth.model.User;
+import com.seismaismais.praizer.auth.model.UserProfile;
 
 @Repository("userDao")
 public class UserDaoImpl implements UserDao {
@@ -78,7 +82,7 @@ public class UserDaoImpl implements UserDao {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Transactional
 	@Override
 	public void update(User u) {
@@ -88,4 +92,13 @@ public class UserDaoImpl implements UserDao {
 			e.printStackTrace();
 		}
 	}
+
+	public List<GrantedAuthority> getGrantedAuthorities(User user) {
+		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		for (UserProfile userProfile : user.getUserProfiles()) {
+			authorities.add(new SimpleGrantedAuthority("ROLE_" + userProfile.getType()));
+		}
+		return authorities;
+	}
+
 }

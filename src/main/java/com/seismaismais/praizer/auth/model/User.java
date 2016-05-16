@@ -1,5 +1,6 @@
 package com.seismaismais.praizer.auth.model;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,11 +15,14 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import com.seismaismais.praizer.auth.data.State;
 
 @Entity
 @Table(name="USER")
-public class User {
+public class User{
 
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -132,5 +136,6 @@ public class User {
 		return "User [id=" + userId + ", email=" + email + ", password=" + password + ", church=" + church + ", fullname="
 				+ fullname + ", state=" + state + ", userProfiles=" + userProfiles + "]";
 	}
-	
+
+
 }

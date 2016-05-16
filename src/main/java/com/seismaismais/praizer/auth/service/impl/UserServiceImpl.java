@@ -3,6 +3,7 @@ package com.seismaismais.praizer.auth.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +24,10 @@ public class UserServiceImpl implements UserService{
 
 	public User findByEmail(String email) {
 		return userDAO.findByEmail(email);
+	}
+	
+	public List<GrantedAuthority> getGrantedAuthorities(User user) {
+		return userDAO.getGrantedAuthorities(user);
 	}
 	
 	public List<User> list() {

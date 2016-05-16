@@ -1,5 +1,7 @@
 package com.seismaismais.praizer.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.AuthenticationException;
@@ -29,11 +31,12 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/authentication", method = RequestMethod.POST)
-	public String getAuth(@ModelAttribute User user, ModelMap model) {	
+	public String getAuth(@ModelAttribute User user, ModelMap model, HttpServletRequest request) {	
 		try{
-			authenticateService.authenticate(user.getEmail(), user.getPassword());
+			User user1 = authenticateService.authenticate(user.getEmail(), user.getPassword());
+			request.getSession().setAttribute("user",user1);
 		}catch(AuthenticationException e){
-			model.addAttribute("error", "Errooooooo");
+			model.addAttribute("error", "O e-mail e a senha que você digitou não coincidem.");
 		}
 		return "login";
 	}
