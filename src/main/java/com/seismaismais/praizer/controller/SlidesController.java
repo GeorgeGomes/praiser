@@ -9,6 +9,6 @@ public class SlidesController {
 
 	@RequestMapping(value="/slides", method = RequestMethod.GET)
 	public String getSlides() {
-		return "slides";
+		return "/slides";
 	}
 }

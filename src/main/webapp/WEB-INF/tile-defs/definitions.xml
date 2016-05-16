@@ -3,32 +3,36 @@
 "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
 "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-	<definition name="index" extends="DefaultTemplate">
+	<definition name="/index" extends="DefaultTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/index.jsp" />
 	</definition>
 	
-	<definition name="signup" extends="DefaultTemplate">
+	<definition name="/signup" extends="DefaultTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/signup.jsp" />
 	</definition>
 	
-	<definition name="login" extends="DefaultTemplate">
+	<definition name="/login" extends="DefaultTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/login.jsp" />
 	</definition>
 	
-	<definition name="403" extends="DefaultTemplate">
+	<definition name="/403" extends="DefaultTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/403.jsp" />
 	</definition>
 	
-	<definition name="explore" extends="DefaultTemplate">
+	<definition name="/explore" extends="DefaultTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/explore.jsp" />
 	</definition>
 	
-	<definition name="slides" extends="DefaultTemplate">
+	<definition name="/slides" extends="DefaultTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/slides.jsp" />
 	</definition>
 	
-	<definition name="download" extends="DefaultEmpty">
+	<definition name="/download" extends="DefaultEmpty">
 		<put-attribute name="content" value="/WEB-INF/views/download.jsp" />
+	</definition>
+	
+	<definition name="/profile" extends="DefaultEmpty">
+		<put-attribute name="content" value="/WEB-INF/views/profile.jsp" />
 	</definition>
 	
 </tiles-definitions>

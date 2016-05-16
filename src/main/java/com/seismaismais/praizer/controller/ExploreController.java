@@ -9,6 +9,6 @@ public class ExploreController {
 
 	@RequestMapping(value="/explore", method = RequestMethod.GET)
 	public String getExplore() {
-		return "explore";
+		return "/explore";
 	}
 }

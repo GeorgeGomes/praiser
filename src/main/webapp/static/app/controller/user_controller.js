@@ -17,10 +17,26 @@ App.controller('SignupController', ['$scope', '$log', 'UserService', '$location'
 			);
 	};
 	
+	self.get = function(){
+		UserService.get()
+			.then(
+					function(user){
+						self.user = user;
+					},
+					function(errResponse){
+						console.error("Erro ao atualizar uma muscleGroup (updateMuscleGroup)");
+					}
+			
+			);
+	};
+	
 	self.submitCreate = function(){
 		$log.debug(console.log(self.create));
 		$log.debug("Criando usuário");
 		$log.debug($location.host());
 		self.create();
 	}
+	
+	self.get();
+	
 }]);

@@ -8,8 +8,8 @@ import com.seismaismais.praizer.auth.model.User;
 
 public interface UserService {
 
-	User findById(Long id);
-	User findByEmail(String email);
+	public User findById(Long id);
+	public User findByEmail(String email);
 	public List<User> list();
 	public void delete(User user);
 	public void update(User user);

@@ -7,14 +7,14 @@
 	</div>
 
 
-	<div style="margin-left: 1em; float: right;; width: 18em; border-left: 1px solid #ffffff; margin-top: 1em;">
+	<div ng-app="praizer" ng-controller="SignupController as ctrl" style="margin-left: 1em; float: right;; width: 18em; border-left: 1px solid #ffffff; margin-top: 1em;">
 		<sec:authorize access="isAnonymous()">
 			<a style="float: left; color: #ffffff; width: 6em; padding: 0.2em 2em 0.2em 2em" href="login">Login</a>
 			<a style="font-weight: bold; float: left; background-color: #00FFFF; border-radius: 0.6em; color: #000000; padding: 0.2em 2em 0.2em 2em" href="signup">Sign Up</a>
 			<div style="clear: both"></div>
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()">
-			
+			<a href="profile">{{ctrl.user.fullname}}</a>
 		</sec:authorize>
 	</div>
 

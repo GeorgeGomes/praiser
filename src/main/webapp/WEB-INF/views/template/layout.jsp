@@ -13,6 +13,7 @@
 	href="https://material.angularjs.org/1.1.0-rc4/docs.css" />
 <script src="<c:url value="static/js/jquery.min.js"/>"></script>
 <script src="<c:url value="static/js/bootstrap.min.js"/>"></script>
+
 <!--[if gte IE 9]>
   <style type="text/css">
     .gradient {
@@ -21,7 +22,7 @@
   </style>
 <![endif]-->
 </head>
-<body>
+<body ng-app="praizer" ng-cloak>
 	<tiles:insertAttribute name="header" />
 	<tiles:insertAttribute name="menu" />
 	<tiles:insertAttribute name="body" />

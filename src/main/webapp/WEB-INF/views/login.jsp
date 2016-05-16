@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-<div ng-app="praizer" ng-cloak style="background-color: #ffffff">
+<div style="background-color: #ffffff">
 	<div ng-controller="LoginController as ctrl">
 		
 		<form:form method="POST" action="authentication" modelAttribute="user">

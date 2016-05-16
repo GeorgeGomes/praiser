@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<div ng-app="praizer" ng-cloak>
+<div>
 
 	<div ng-controller="ExploreController as ctrl">
 
@@ -59,7 +59,6 @@
 <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
 
 <script src="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.0-rc4/angular-material.js"></script>
-
 
 <script src="<c:url value='/static/app/app.js' />"></script>
 <script src="<c:url value='/static/app/service/explore_service.js' />"></script>

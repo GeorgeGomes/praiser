@@ -4,7 +4,7 @@ App.factory('UserService', ['$http', '$q', '$location', '$log', function($http, 
 	
 	return{
 		list: function(){
-			return $http.get($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/user/')
+			return $http.get($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/auth/user/')
 					.then(
 							function(response){
 								return response.data;
@@ -17,8 +17,8 @@ App.factory('UserService', ['$http', '$q', '$location', '$log', function($http, 
 			
 		},
 		
-		get: function(codExercise){
-			return $http.get($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/user/' + codExercise)
+		get: function(){
+			return $http.get($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/auth/user/current')
 					.then(
 							function(response){
 								return response.data;
@@ -32,7 +32,7 @@ App.factory('UserService', ['$http', '$q', '$location', '$log', function($http, 
 		},
 		
 		create: function(user){
-			return $http.post($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/user/', user)
+			return $http.post($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/auth/user/', user)
 					.then(
 							function(response){
 								$log.debug("#Create user");
@@ -45,8 +45,8 @@ App.factory('UserService', ['$http', '$q', '$location', '$log', function($http, 
 					);
 		},
 		
-		update: function(exercise){
-			return $http.put($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/user/', exercise)
+		update: function(user){
+			return $http.put($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/auth/user/', user)
 					.then(
 							function(response){
 								return response.data;
@@ -58,8 +58,8 @@ App.factory('UserService', ['$http', '$q', '$location', '$log', function($http, 
 					);
 		},
 		
-		remove: function(codExercise){
-			return $http.delete($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/user/' + codExercise)
+		remove: function(codUser){
+			return $http.delete($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/auth/user/' + codUser)
 					.then(
 							function(response){
 								return response.data;

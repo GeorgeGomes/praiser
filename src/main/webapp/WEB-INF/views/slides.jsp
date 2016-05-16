@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<div ng-app="praizer" ng-cloak style="background-color: #ffffff">
+<div style="background-color: #ffffff">
 	<div ng-controller="SlidesController as ctrl">
 		 <input type="text" name="musica" id="musica" placeholder="Qual música você quer?"/>
 		 <button type="button">Fazer upload da letra</button>
