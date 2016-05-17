@@ -28,7 +28,7 @@
 	</definition>
 	
 	<definition name="/profile" extends="DefaultTemplate">
-		<put-attribute name="content" value="/WEB-INF/views/profile.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/profile.jsp" />
 	</definition>
 	
 	<definition name="/download" extends="DefaultEmpty">

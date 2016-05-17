@@ -2,7 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <div style="background-color: #ffffff">
-	<div ng-controller="LoginController as ctrl">
+	<div>
 		
 		<form:form method="POST" action="authentication" modelAttribute="user">
 			<div style="padding-top: 4em; padding-bottom: 4em; width: 100%">
@@ -39,10 +39,9 @@
 				</div>
 			</div>
 		</form:form>
-
-
 	</div>
-
 </div>
 
-
+<%-- ##### IMPORTS DONT REQUIRED, THEY ARE IN footer.jsp ##### --%>
+<%-- <script src="<c:url value='/static/app/service/user_service.js' />"></script> --%>
+<%-- <script src="<c:url value='/static/app/controller/user_controller.js' />"></script> --%>

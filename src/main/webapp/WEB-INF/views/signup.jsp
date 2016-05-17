@@ -2,8 +2,8 @@
 
 
 <div style="background-color: #ffffff">
-	<div ng-controller="SignupController as ctrl">
-		<form name="myForm" ng-submit="ctrl.submitCreate()">
+	<div ng-controller="UserController as ctrl">
+		<form name="myForm" ng-submit="ctrl.submit()">
 			<div style="padding-top: 4em; padding-bottom: 4em; width: 100%">
 				<div style="max-width: 48em; margin: 0 auto">
 					<div style="margin: 0 auto; width: 22em; float: left">
@@ -83,11 +83,6 @@
 
 </div>
 
-<script src="/static/js/angular/angular.min.js"></script>
-<script src="/static/js/angular/angular-messages.min.js"></script>
-
-<script src="<c:url value='/static/app/app.js' />"></script>
-<script src="<c:url value='/static/app/service/user_service.js' />"></script>
-<script src="<c:url value='/static/app/controller/user_controller.js' />"></script>
-
-
+<%-- ##### IMPORTS DONT REQUIRED, THEY ARE IN footer.jsp ##### --%>
+<%-- <script src="<c:url value='/static/app/service/user_service.js' />"></script> --%>
+<%-- <script src="<c:url value='/static/app/controller/user_controller.js' />"></script> --%>

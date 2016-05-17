@@ -4,13 +4,12 @@ App.factory('UserService', ['$http', '$q', '$location', '$log', function($http, 
 	
 	return{
 		list: function(){
-			return $http.get($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/auth/user/')
+			return $http.get($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/auth/user/list')
 					.then(
 							function(response){
 								return response.data;
 							},
 							function(errResponse){
-								console.error('Error while fetching exercises');
 								return $q.reject(errResponse);
 							}
 					);
@@ -18,13 +17,12 @@ App.factory('UserService', ['$http', '$q', '$location', '$log', function($http, 
 		},
 		
 		get: function(){
-			return $http.get($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/auth/user/current')
+			return $http.get($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/auth/user/get')
 					.then(
 							function(response){
 								return response.data;
 							},
 							function(errResponse){
-								console.error('Error while fetching exercises');
 								return $q.reject(errResponse);
 							}
 					);
@@ -32,44 +30,39 @@ App.factory('UserService', ['$http', '$q', '$location', '$log', function($http, 
 		},
 		
 		create: function(user){
-			return $http.post($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/auth/user/', user)
+			return $http.post($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/auth/user/create', user)
 					.then(
 							function(response){
-								$log.debug("#Create user");
-								return response.data;
+								return response;
 							},
 							function(errResponse){
-								console.error('Error while fetching exercises');
 								return $q.reject(errResponse);
 							}
 					);
 		},
 		
 		update: function(user){
-			return $http.put($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/auth/user/', user)
+			return $http.put($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/auth/user/update', user)
 					.then(
 							function(response){
 								return response.data;
 							},
 							function(errResponse){
-								console.error('Error while fetching exercises');
 								return $q.reject(errResponse);
 							}
 					);
 		},
 		
-		remove: function(codUser){
-			return $http.delete($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/auth/user/' + codUser)
+		delete: function(userId){
+			return $http.delete($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/auth/user/delete' + userId)
 					.then(
 							function(response){
 								return response.data;
 							},
 							function(){
-								console.error('Error while deleting exercise');
 								return $q.reject(errResponse);
 							}
 					);
 		}
 	};
-	
 }]);

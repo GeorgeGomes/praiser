@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <div style="clear: both"></div>
 
@@ -28,6 +29,7 @@
 	<div class="footer" style="margin: 5em auto">© 2016 Praizer.cc</div>
 </div>
 
-<script src="<c:url value='/static/app/service/user_service.js' />"></script>
-<script src="<c:url value='/static/app/controller/user_controller.js' />"></script>
-
+<sec:authorize access="isAuthenticated()">
+	<script src="<c:url value='/static/app/service/user_service.js' />"></script>
+	<script src="<c:url value='/static/app/controller/user_controller.js' />"></script>
+</sec:authorize>

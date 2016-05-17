@@ -60,10 +60,3 @@
 	</div>
 	<div class="ibab"></div>
 </div>
-
-<script src="<c:url value='/static/js/angular/angular.min.js' />"></script>
-<script src="<c:url value='/static/js/angular/angular-messages.min.js' />"></script>
-
-<script src="<c:url value='/static/app/app.js' />"></script>
-
-
