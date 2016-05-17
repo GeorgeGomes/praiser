@@ -49,6 +49,6 @@ public class LoginController {
 		}catch(AuthenticationException e){
 			model.addAttribute("error", "O e-mail e a senha que você digitou não coincidem.");
 		}
-		return requestUrl;
+		return "redirect:" + requestUrl;
 	}
 }

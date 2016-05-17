@@ -27,12 +27,12 @@
 		<put-attribute name="body" value="/WEB-INF/views/slides.jsp" />
 	</definition>
 	
-	<definition name="/download" extends="DefaultEmpty">
-		<put-attribute name="content" value="/WEB-INF/views/download.jsp" />
+	<definition name="/profile" extends="DefaultTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/profile.jsp" />
 	</definition>
 	
-	<definition name="/profile" extends="DefaultEmpty">
-		<put-attribute name="content" value="/WEB-INF/views/profile.jsp" />
+	<definition name="/download" extends="DefaultEmpty">
+		<put-attribute name="content" value="/WEB-INF/views/download.jsp" />
 	</definition>
 	
 </tiles-definitions>

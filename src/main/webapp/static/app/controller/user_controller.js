@@ -1,7 +1,7 @@
 'use strict';
 
 
-App.controller('SignupController', ['$scope', '$log', 'UserService', '$location', function($scope, $log, UserService, $location){
+App.controller('UserController', ['$scope', '$log', 'UserService', '$location', function($scope, $log, UserService, $location){
 	var self = this;
 	self.user={};
 	
@@ -31,12 +31,15 @@ App.controller('SignupController', ['$scope', '$log', 'UserService', '$location'
 	};
 	
 	self.submitCreate = function(){
-		$log.debug(console.log(self.create));
-		$log.debug("Criando usuário");
-		$log.debug($location.host());
-		self.create();
+		$log.debug("Create user!");
+		$log.debug(self.user)
 	}
 	
-	self.get();
+	self.submitUpdate = function(){
+		$log.debug("Update user!");
+		$log.debug(self.user)
+	};
+	
+//	self.get();
 	
 }]);

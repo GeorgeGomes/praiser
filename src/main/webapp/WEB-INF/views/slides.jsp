@@ -12,14 +12,8 @@
 
 </div>
 
-<!-- Angular Material requires Angular.js Libraries -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
-<script src="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.0-rc4/angular-material.js"></script>
+<script src="/static/js/angular/angular.min.js"></script>
+<script src="/static/js/angular/angular-messages.min.js"></script>
 
 <script src="<c:url value='/static/app/app.js' />"></script>
 <script src="<c:url value='/static/app/controller/slides_controller.js' />"></script>
