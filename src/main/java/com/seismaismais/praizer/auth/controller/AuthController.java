@@ -1,7 +1,6 @@
 package com.seismaismais.praizer.auth.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,31 +16,41 @@ import com.seismaismais.praizer.auth.model.User;
 import com.seismaismais.praizer.auth.service.AuthenticateService;
 
 @Controller
-public class LoginController {
+public class AuthController {
 
-	Logger logger = Logger.getLogger(LoginController.class);
-
+	Logger logger = Logger.getLogger(AuthController.class);
 
 	@Autowired
 	private AuthenticateService authenticateService;
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String getLogin() {
+	public String login() {
 		return "/login";
 	}
 
 	@RequestMapping(value = "/authentication", method = RequestMethod.POST)
-	public String getAuth(@ModelAttribute User user, ModelMap model, HttpServletRequest request) {
+	public String authentication(@ModelAttribute User user, ModelMap model, HttpServletRequest request) {
 		String requestUrl = "/login";
-		try{
+		try {
 			User userAuth = authenticateService.authenticate(user.getEmail(), user.getPassword());
-			authenticateService.saveObjectRequest(userAuth, request);
+			authenticateService.saveUserRequest(userAuth);
 
-			DefaultSavedRequest savedRequest = (DefaultSavedRequest) request.getSession().getAttribute("SPRING_SECURITY_SAVED_REQUEST");
-			requestUrl =  savedRequest.getServletPath();
-		}catch(AuthenticationException e){
+			DefaultSavedRequest savedRequest = (DefaultSavedRequest) request.getSession()
+					.getAttribute("SPRING_SECURITY_SAVED_REQUEST");
+			if (savedRequest == null) {
+				return "redirect:/";
+			}
+			requestUrl = savedRequest.getServletPath();
+		} catch (AuthenticationException e) {
 			model.addAttribute("error", "O e-mail e a senha que você digitou não coincidem.");
 		}
 		return "redirect:" + requestUrl;
+	}
+
+	@RequestMapping(value = "/logoff", method = RequestMethod.GET)
+	public String logoff() {
+		authenticateService.logout();
+		authenticateService.removeUserRequest();
+		return "redirect:/";
 	}
 }

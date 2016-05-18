@@ -1,6 +1,6 @@
 package com.seismaismais.praizer.auth.model;
 
-import java.util.Collection;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,20 +15,25 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import com.seismaismais.praizer.auth.data.State;
 
 @Entity
 @Table(name="USER")
-public class User{
+public class User implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="USER_ID")
 	private Long userId;
 
+	@Column(name="IMAGEM_PROFILE", nullable=true)
+	private String imagemProfile;
+	
 	@Column(name="EMAIL", unique=true, nullable=false)
 	private String email;
 	
@@ -49,13 +54,21 @@ public class User{
              joinColumns = { @JoinColumn(name = "USER_ID") }, 
              inverseJoinColumns = { @JoinColumn(name = "USER_PROFILE_ID") })
 	private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
-	
+
 	public Long getUserId() {
 		return userId;
 	}
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
+	}
+
+	public String getImagemProfile() {
+		return imagemProfile;
+	}
+
+	public void setImagemProfile(String imagemProfile) {
+		this.imagemProfile = imagemProfile;
 	}
 
 	public String getEmail() {
@@ -110,7 +123,7 @@ public class User{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
 
@@ -123,19 +136,19 @@ public class User{
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (email == null) {
-			if (other.email != null)
+		if (userId == null) {
+			if (other.userId != null)
 				return false;
-		} else if (!email.equals(other.email))
+		} else if (!userId.equals(other.userId))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + userId + ", email=" + email + ", password=" + password + ", church=" + church + ", fullname="
-				+ fullname + ", state=" + state + ", userProfiles=" + userProfiles + "]";
+		return "User [userId=" + userId + ", imagemProfile=" + imagemProfile + ", email=" + email + ", password="
+				+ password + ", church=" + church + ", fullname=" + fullname + ", state=" + state + ", userProfiles="
+				+ userProfiles + "]";
 	}
-
-
+	
 }

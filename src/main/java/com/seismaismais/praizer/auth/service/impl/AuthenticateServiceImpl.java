@@ -1,6 +1,5 @@
 package com.seismaismais.praizer.auth.service.impl;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.seismaismais.praizer.auth.model.User;
 import com.seismaismais.praizer.auth.service.AuthenticateService;
@@ -41,13 +42,22 @@ public class AuthenticateServiceImpl implements  AuthenticateService{
 		return user;
 	}
 	
-	public void saveObjectRequest(User user, HttpServletRequest request){
-		HttpSession session = request.getSession(); 
+	public void logout(){
+		SecurityContextHolder.clearContext();
+	}
+	
+	public void saveUserRequest(User user){
+		HttpSession session = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getSession(); 
 		session.setAttribute(this.OBJECT_USER_SAVED_REQUEST, user);
 	}
 	
-	public User getObjectRequest(HttpServletRequest request){
-		HttpSession session = request.getSession(); 
+	public User getUserRequest(){
+		HttpSession session = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getSession();
 		return (User) session.getAttribute(this.OBJECT_USER_SAVED_REQUEST);
+	}
+	
+	public void removeUserRequest(){
+		HttpSession session = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getSession(); 
+		session.removeAttribute(this.OBJECT_USER_SAVED_REQUEST);
 	}
 }

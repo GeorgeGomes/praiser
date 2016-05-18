@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -51,13 +49,12 @@ public class UserRestController {
 
 	@RequestMapping(value = "/rest/auth/user/get", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> get() {
-		User user = authenticateService.getObjectRequest(
-				((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest());
+		User userAuth = authenticateService.getUserRequest();
 
-		if (user == null) {
+		if (userAuth == null) {
 			return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<User>(user, HttpStatus.OK);
+		return new ResponseEntity<User>(userAuth, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/rest/auth/user/create", method = RequestMethod.POST)
@@ -73,8 +70,7 @@ public class UserRestController {
 		userService.create(user);
 
 		User userAuth = authenticateService.authenticate(user.getEmail(), user.getPassword());
-		authenticateService.saveObjectRequest(userAuth,
-				((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest());
+		authenticateService.saveUserRequest(userAuth);
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(ucBuilder.path("/rest/user/{id}").buildAndExpand(user.getUserId()).toUri());
@@ -84,6 +80,7 @@ public class UserRestController {
 	@RequestMapping(value = "/rest/auth/user/update", method = RequestMethod.PUT)
 	public ResponseEntity<User> update(@RequestBody User user) {
 		userService.update(user);
+		authenticateService.saveUserRequest(user);
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 
@@ -98,14 +95,22 @@ public class UserRestController {
 	public ResponseEntity<Void> upload(@RequestParam("file") MultipartFile file) {
 
 		if (!file.isEmpty()) {
-			String type = file.getContentType().split("/")[1];
-			String name = FileUtil.generateUniqueFileName() + '.' + type;
 			try {
+				String type = file.getContentType().split("/")[1];
+				String name = FileUtil.generateUniqueFileName() + '.' + type;
+				User userAuth = authenticateService.getUserRequest();
+				
+				userAuth.setImagemProfile(name);
+				
 				byte[] bytes = file.getBytes();
 				BufferedOutputStream stream = new BufferedOutputStream(
 						new FileOutputStream(new File("/Users/georgeg/Desktop/praizer/" + name)));
 				stream.write(bytes);
 				stream.close();
+				
+				userService.update(userAuth);
+				authenticateService.saveUserRequest(userAuth);
+				
 			} catch (Exception e) {
 				return new ResponseEntity<Void>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}

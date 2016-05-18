@@ -23,8 +23,8 @@
 		<put-attribute name="body" value="/WEB-INF/views/explore.jsp" />
 	</definition>
 	
-	<definition name="/slides" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/slides.jsp" />
+	<definition name="/slide" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/slide.jsp" />
 	</definition>
 	
 	<definition name="/profile" extends="DefaultTemplate">

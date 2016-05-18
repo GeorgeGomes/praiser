@@ -14,10 +14,11 @@
 			<div style="clear: both"></div>
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()">
-			<img src="<c:url value="static/img/default-user.png"/>" style="margin:0px 0px 0px 3em;float:left;border-radius:100%;width:40px;height:40px;border:4px solid #ffffff" />
+			<img ng-src="{{ ctrl.user.imagemProfile != null && '/praizer/images/' + ctrl.user.imagemProfile || 'static/img/default-user.png' }}" style="margin:0px 0px 0px 3em;float:left;border-radius:100%;width:40px;height:40px;border:4px solid #ffffff" />
 			<div style="float:left;width:100px;margin-left:0.6em;padding-top:0.6em">
 				<a href="profile" style="color:#ffffff;font-weight:bold;font-size:16px">{{ctrl.user.fullname}}</a>
 			</div>
+			<a href="logoff" style="color:#ffffff;font-weight:bold;font-size:16px">Sair</a>
 		</sec:authorize>
 	</div>
 

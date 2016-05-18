@@ -29,7 +29,5 @@
 	<div class="footer" style="margin: 5em auto">© 2016 Praizer.cc</div>
 </div>
 
-<sec:authorize access="isAuthenticated()">
-	<script src="<c:url value='/static/app/service/user_service.js' />"></script>
-	<script src="<c:url value='/static/app/controller/user_controller.js' />"></script>
-</sec:authorize>
+<script src="<c:url value='/static/app/service/user_service.js' />"></script>
+<script src="<c:url value='/static/app/controller/user_controller.js' />"></script>

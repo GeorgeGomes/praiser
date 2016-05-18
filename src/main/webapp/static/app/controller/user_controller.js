@@ -5,11 +5,12 @@ App.controller('UserController', ['$scope', '$log', '$mdDialog', '$location', '$
 	self.user={};
 	self.users=[];
 	$scope.editMode = false;
+	$scope.image = "/praizer/images/" + self.user.imageProfile;
 	
 	//plugin used: http://nervgh.github.io/pages/angular-file-upload/examples/image-preview/
 	
 	$scope.uploader = new FileUploader({
-		url: $location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/auth/user/upload',
+		url: $location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/auth/user/upload/',
 		removeAfterUpload: true
 	});
 	
@@ -31,7 +32,8 @@ App.controller('UserController', ['$scope', '$log', '$mdDialog', '$location', '$
             console.info('onSuccessItem', fileItem, response, status, headers);
 			$("#file").val('');
         };
-		
+	
+	
 	self.edit = function(){
 		$scope.editMode = true;
 	}
@@ -55,6 +57,7 @@ App.controller('UserController', ['$scope', '$log', '$mdDialog', '$location', '$
 					function(user){
 						$log.debug("User get success!")
 						self.user = user;
+						console.log(self.user)
 					},
 					function(errResponse){
 						$log.error("Error on get!")
@@ -62,6 +65,8 @@ App.controller('UserController', ['$scope', '$log', '$mdDialog', '$location', '$
 			
 			);
 	};
+	
+
 	
 	self.create = function(){
 		UserService.create(self.user)
@@ -138,5 +143,7 @@ App.controller('UserController', ['$scope', '$log', '$mdDialog', '$location', '$
 	};
 	
 	self.get();
+	
+	
 	
 }]);
