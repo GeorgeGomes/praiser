@@ -50,6 +50,18 @@ public class SlideRestController {
 	
 	
 		slideService.create(slide);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}

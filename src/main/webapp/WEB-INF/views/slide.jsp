@@ -6,9 +6,9 @@
 		 <button type="button">Fazer upload da letra</button>
 		 <div style="border-bottom:2px dashed #f5f5f5"></div>
 		 <div>Preview</div>
-		 <textarea ng-model="ctrl.texto"></textarea>
+		 <textarea ng-model="ctrl.slide.musicLetter"></textarea>
 		 <div></div>
-		 <button>Próximo</button>
+		 <button type="button" ng-click="ctrl.create()">Próximo</button>
 		 
 	</div>
 
