@@ -1,5 +1,6 @@
 package com.test;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -11,6 +12,7 @@ import org.apache.poi.xslf.usermodel.SlideLayout;
 import org.apache.poi.xslf.usermodel.XMLSlideShow;
 import org.apache.poi.xslf.usermodel.XSLFPictureData;
 import org.apache.poi.xslf.usermodel.XSLFPictureShape;
+import org.apache.poi.xslf.usermodel.XSLFShape;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
 import org.apache.poi.xslf.usermodel.XSLFSlideLayout;
 import org.apache.poi.xslf.usermodel.XSLFSlideMaster;
@@ -31,6 +33,8 @@ public class CreatePowerPointIntegrationTest {
 		
 		XSLFSlideLayout slideLayout = slideMaster.getLayout(SlideLayout.TITLE_AND_CONTENT);
 		
+		
+		
 		//Slide #1
 		XSLFSlide slide1 = ppt.createSlide(slideLayout);
 		XSLFTextShape title = slide1.getPlaceholder(0);
@@ -46,6 +50,8 @@ public class CreatePowerPointIntegrationTest {
 		XSLFSlide slide2 = ppt.createSlide(slideLayout);
 		XSLFTextShape title2 = slide2.getPlaceholder(0);
 		XSLFTextShape body2 = slide2.getPlaceholder(1);
+		
+		
 		slide2.removeShape(title2);
 		body2.clearText();
 		
@@ -53,13 +59,20 @@ public class CreatePowerPointIntegrationTest {
 		text2.setBullet(false);
 		text2.addNewTextRun().setText("Refrão 2");
 		
-
+//		slide2.setFollowMasterBackground(true);
+//		slide2.addShape(shape);
+	
+		
 		byte[] pictureData = IOUtils.toByteArray(new FileInputStream("c:/Users/georgeg/Desktop/praizer/uploaded.png"));
 
 	    XSLFPictureData pd = ppt.addPicture(pictureData, PictureData.PictureType.PNG);
 	    XSLFPictureShape pic = slide2.createPicture(pd);
+	    pic.setFillColor(Color.BLACK);
 	    
-		
+
+	    
+
+	
 		
 		
 		File file = new File("/Users/georgeg/Desktop/praizer/power.pptx");
