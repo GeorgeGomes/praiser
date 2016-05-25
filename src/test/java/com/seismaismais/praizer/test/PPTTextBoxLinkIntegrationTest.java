@@ -1,4 +1,4 @@
-package com.test;
+package com.seismaismais.praizer.test;
 
 import java.awt.Color;
 import java.awt.Graphics2D;

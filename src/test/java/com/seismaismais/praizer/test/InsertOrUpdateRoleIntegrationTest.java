@@ -1,4 +1,4 @@
-package com.test;
+package com.seismaismais.praizer.test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package com.test;
+package com.seismaismais.praizer.test;
 
 import java.io.File;
 import java.io.FileOutputStream;
