@@ -24,7 +24,7 @@ import org.junit.Test;
 
 import gui.ava.html.image.generator.HtmlImageGenerator;
 
-public class CreateImageIntegrationTest2 {
+public class HTML2ImageIntegrationTest {
 
 	@Test
 	public void test() throws IOException {
@@ -41,6 +41,7 @@ String html = "<div style='width:50px;height:50px;border:1px solid red'>oi</div>
 		d.setSize(200, 100);
 		imageGenerator.setSize(d);
 		imageGenerator.saveAsImage("/Users/georgeg/Desktop/praizer/hello-world.png");
+		
 		//imageGenerator.saveAsHtmlWithMap("hello-world.html", "hello-world.png");
 	}
 
