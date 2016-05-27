@@ -29,7 +29,7 @@
 				</div>
 				
 				
-				<button style="padding:0.6em;font-size:1.6em;border:0px;display:block;margin:2em auto;background-color:#00F5FF;color:#ffffff" type="button">criar slides</button>
+				<a href="slide" style="width:150px;text-decoration:none;padding:0.6em;font-size:1.6em;border:0px;display:block;margin:2em auto;background-color:#00F5FF;color:#ffffff" type="button">criar slides</a>
 				
 			</div>
 
