@@ -9,6 +9,7 @@
 
 <link rel="stylesheet" href="<c:url value="/static/css/bootstrap.min.css"/>" />
 <link rel="stylesheet" href="<c:url value="/static/css/style.css"/>" />
+<link rel="stylesheet" href="<c:url value="/static/css/jquery-te-1.4.0.css"/>" />
 <link rel="stylesheet" href="<c:url value="/static/css/angular-material.min.css"/>" />
 
 <script src="<c:url value="/static/js/jquery.min.js"/>"></script>
@@ -26,6 +27,8 @@
 <script src="<c:url value='/static/js/angular/angular-touch.min.js' />"></script>
 <script src="<c:url value='/static/js/angular/angular-material.min.js' />"></script>
 <script src="<c:url value='/static/js/angular/angular-file-upload.min.js' />"></script>
+
+<script src="<c:url value='/static/js/jquery-te-1.4.0.min.js' />"></script>
 
 <script src="<c:url value='/static/app/app.js' />"></script>
 

@@ -2,7 +2,39 @@
 
 @font-face {
 	font-family: ralewayRegular;
-	src: url(../fonts/Raleway-Regular.ttf);
+	src: url(../fonts/Raleway/Raleway-Regular.ttf);
+}
+
+@font-face {
+	font-family: cabinSketch;
+	src: url(../fonts/CabinSketch/CabinSketch-Regular.ttf);
+}
+
+@font-face {
+	font-family: asul;
+	src: url(../fonts/Asul/Asul-Regular.ttf);
+}
+
+.font-cabin-sketch{
+	font-family:cabinSketch;
+}
+.font-asul{
+	font-family:asul;
+}
+
+.clearfix{
+	clear:both;
+}
+
+.btn-font{
+	background-color:#ffffff;
+	padding:0.6em;
+	font-size:1em;
+	color:#000000;
+	border:1px solid #000000;
+	float:left;
+	margin:0.4em;
+	text-align:center;
 }
 
 .title {

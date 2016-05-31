@@ -46,23 +46,8 @@ public class SlideRestController {
 	}
 
 	@RequestMapping(value = "/rest/slide/create", method = RequestMethod.POST)
-	public ResponseEntity<Void> create(@RequestBody Slide slide, UriComponentsBuilder ucBuilder) {
-	
-	
+	public ResponseEntity<Void> create(@RequestBody Slide slide) {
 		slideService.create(slide);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 

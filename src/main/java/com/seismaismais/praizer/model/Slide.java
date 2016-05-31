@@ -1,21 +1,15 @@
 package com.seismaismais.praizer.model;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.seismaismais.praizer.auth.data.State;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name="SLIDE")
@@ -31,9 +25,17 @@ public class Slide implements Serializable{
 	@Column(name="SLIDE_ID")
 	private Long slideId;
 
-	@Column(name="MUSIC_LETTER", nullable=false)
-	private String musicLetter;
+	@Column(name="ARTIST", nullable=false)
+	private String artist;
+	
+	@Column(name="MUSIC", nullable=false)
+	private String music;
+	
+	@Column(name="SLIDE", nullable=false)
+	@Type(type="text")
+	private String slide;
 
+	
 	public Long getSlideId() {
 		return slideId;
 	}
@@ -42,12 +44,30 @@ public class Slide implements Serializable{
 		this.slideId = slideId;
 	}
 
-	public String getMusicLetter() {
-		return musicLetter;
+	public String getArtist() {
+		return artist;
 	}
 
-	public void setMusicLetter(String musicLetter) {
-		this.musicLetter = musicLetter;
+	public void setArtist(String artist) {
+		this.artist = artist;
 	}
+
+	public String getMusic() {
+		return music;
+	}
+
+	public void setMusic(String music) {
+		this.music = music;
+	}
+
+	public String getSlide() {
+		return slide;
+	}
+
+	public void setSlide(String slide) {
+		this.slide = slide;
+	}
+
+
 	
 }

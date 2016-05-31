@@ -1,0 +1,18 @@
+Thin 100
+Thin 100 Italic
+Extra-Light 200
+Extra-Light 200 Italic
+Light 300
+Light 300 Italic
+Normal 400
+Normal 400 Italic
+Medium 500
+Medium 500 Italic
+Semi-Bold 600
+Semi-Bold 600 Italic
+Bold 700
+Bold 700 Italic
+Extra-Bold 800
+Extra-Bold 800 Italic
+Ultra-Bold 900
+Ultra-Bold 900 Italic

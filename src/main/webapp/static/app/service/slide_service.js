@@ -2,7 +2,7 @@
 
 App.factory('SlideService', ['$http', '$q', '$location', '$log', function($http, $q, $location, $log){
 	
-	return{
+	return{		
 		list: function(){
 			return $http.get($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/slide/list')
 					.then(
@@ -30,6 +30,7 @@ App.factory('SlideService', ['$http', '$q', '$location', '$log', function($http,
 		},
 		
 		create: function(slide){
+			console.log(slide)
 			return $http.post($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/slide/create', slide)
 					.then(
 							function(response){
