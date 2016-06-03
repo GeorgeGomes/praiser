@@ -1,28 +1,31 @@
 'use strict';
 
-App.controller('UserController', ['$scope', '$log', '$mdDialog', '$location', '$window', 'FileUploader', 'UserService', function($scope, $log, $mdDialog, $location, $window, FileUploader, UserService){
+App.controller('UserController', ['$scope', '$log', '$rootElement', '$mdDialog', '$location', '$window', 'FileUploader', 'UserService', function($scope, $log, $rootElement, $mdDialog, $location, $window, FileUploader, UserService){
+	var app = $rootElement.attr('ng-app')
+	
 	var self = this;
 	self.user={};
 	self.users=[];
 	$scope.editMode = false;
-	$scope.image = "/praizer/images/" + self.user.imageProfile;
+	$scope.image = "/" + app + "/images/" + self.user.imageProfile;
 	
-	//plugin used: http://nervgh.github.io/pages/angular-file-upload/examples/image-preview/
+	// plugin used:
+	// http://nervgh.github.io/pages/angular-file-upload/examples/image-preview/
 	
 	$scope.uploader = new FileUploader({
-		url: $location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/auth/user/upload/',
+		url: $location.protocol() + "://" + $location.host() + ':' + $location.port() + '/' + app + '/rest/auth/user/upload/',
 		removeAfterUpload: true
 	});
 	
 	$scope.uploader.filters.push({
             name: 'imageFilter',
-            fn: function(item /*{File|FileLikeObject}*/, options) {
+            fn: function(item /* {File|FileLikeObject} */, options) {
                 var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
                 return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
             }
         });
 		
-		$scope.uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
+		$scope.uploader.onWhenAddingFileFailed = function(item /* {File|FileLikeObject} */, filter, options) {
             console.info('onWhenAddingFileFailed', item, filter, options);
 			
 			$("#file").val('');

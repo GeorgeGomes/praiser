@@ -1,10 +1,13 @@
 'use strict';
 
-App.factory('UserService', ['$http', '$q', '$location', '$log', function($http, $q, $location, $log){
+App.factory('UserService', ['$http', '$q', '$rootElement', '$location', '$log', function($http, $q, $rootElement, $location, $log){
+	
+	var app = $rootElement.attr('ng-app')
+	var path = $location.protocol() + "://" + $location.host() + ':' + $location.port();
 	
 	return{
 		list: function(){
-			return $http.get($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/auth/user/list')
+			return $http.get(path + '/' + app + '/rest/auth/user/list')
 					.then(
 							function(response){
 								return response.data;
@@ -17,7 +20,7 @@ App.factory('UserService', ['$http', '$q', '$location', '$log', function($http, 
 		},
 		
 		get: function(){
-			return $http.get($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/auth/user/get')
+			return $http.get(path + '/' + app + '/rest/auth/user/get')
 					.then(
 							function(response){
 								return response.data;
@@ -30,7 +33,7 @@ App.factory('UserService', ['$http', '$q', '$location', '$log', function($http, 
 		},
 		
 		create: function(user){
-			return $http.post($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/auth/user/create', user)
+			return $http.post(path + '/' + app + '/rest/auth/user/create', user)
 					.then(
 							function(response){
 								return response;
@@ -42,7 +45,7 @@ App.factory('UserService', ['$http', '$q', '$location', '$log', function($http, 
 		},
 		
 		update: function(user){
-			return $http.put($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/auth/user/update', user)
+			return $http.put(path + '/' + app + '/rest/auth/user/update', user)
 					.then(
 							function(response){
 								return response.data;
@@ -54,7 +57,7 @@ App.factory('UserService', ['$http', '$q', '$location', '$log', function($http, 
 		},
 		
 		delete: function(userId){
-			return $http.delete($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/auth/user/delete' + userId)
+			return $http.delete(path + '/' + app + '/rest/auth/user/delete/' + userId)
 					.then(
 							function(response){
 								return response.data;

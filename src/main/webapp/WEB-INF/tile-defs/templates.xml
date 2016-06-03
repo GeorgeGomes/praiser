@@ -3,15 +3,21 @@
         "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-	<definition name="DefaultTemplate" template="/WEB-INF/views/template/layout.jsp">
+	<definition name="DefaultTemplate" template="/WEB-INF/views/template/defaultLayout.jsp">
 		<put-attribute name="title" value="Home" />
 		<put-attribute name="header" value="/WEB-INF/views/template/header.jsp" />
-		<put-attribute name="menu" value="/WEB-INF/views/template/menu.jsp" />
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp" />
 	</definition>
 	
-	<definition name="DefaultEmpty" template="/WEB-INF/views/template/empty.jsp">
+	<definition name="AdminTemplate" template="/WEB-INF/views/template/adminLayout.jsp">
+		<put-attribute name="title" value="Admin" />
+		<put-attribute name="header" value="/WEB-INF/views/template/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/views/template/menu.jsp" />
+		<put-attribute name="body" value="" />
+	</definition>
+	
+	<definition name="EmptyTemplate" template="/WEB-INF/views/template/emptyLayout.jsp">
 		<put-attribute name="content" value="" />
 	</definition>
 </tiles-definitions>

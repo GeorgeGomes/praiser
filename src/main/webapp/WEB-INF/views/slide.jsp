@@ -38,45 +38,56 @@
 		 	 
 		 <div id="personalize" ng-show="ctrl.statusPersonalize">
 		 	<div>
-		 		<div style="float:left;width:33%;color:#d9d9d9">
+		 		<div id="panelFont" style="float:left;width:33%;color:#d9d9d9">
 		 			FONTE:
 		 			<div style="background-color: #d9d9d9">
-			 			<div class="btn-font">
-			 				<div>LEAGUE</div>
-			 				<div style="color:blue;font-size:0.6em">Type</div>
-			 			</div>
-			 			<div class="btn-font">
-			 				Open Sans
-			 				<div style="color:blue;font-size:0.6em">Type</div>
-			 			</div>
-			 			<div class="btn-font">
-			 				Josefine
-			 				<div style="color:blue;font-size:0.6em">Type</div>
-			 			</div>
-			 			<div class="btn-font">
-			 				Montserrat
-			 				<div style="color:blue;font-size:0.6em">Type</div>
-			 			</div>
-			 			<div class="btn-font">
-			 				Helvetica
-			 				<div style="color:blue;font-size:0.6em">Type</div>
-			 			</div>
-			 			<div class="btn-font font-asul" ng-click="ctrl.changeFont('asul')">
-			 				Asul
-			 				<div style="color:blue;font-size:0.6em">Type</div>
-			 			</div>
-			 			<div class="btn-font font-cabin-sketch" ng-click="ctrl.changeFont('cabinSketch')">
-			 				Sketch
-			 				<div style="color:blue;font-size:0.6em">Type</div>
-			 			</div>
-			 			<div class="btn-font">
-			 				QUICKSAND
-			 				<div style="color:blue;font-size:0.6em">Type</div>
-			 			</div>
-			 			<div class="btn-font">
-			 				OVERPASS
-			 				<div style="color:blue;font-size:0.6em">Type</div>
-			 			</div>
+<!-- 			 			<div class="btn-font"> -->
+<!-- 			 				<div>LEAGUE</div> -->
+<!-- 			 				<div style="color:blue;font-size:0.6em">Type</div> -->
+<!-- 			 			</div> -->
+<!-- 			 			<div class="btn-font"> -->
+<!-- 			 				Open Sans -->
+<!-- 			 				<div style="color:blue;font-size:0.6em">Type</div> -->
+<!-- 			 			</div> -->
+<!-- 			 			<div class="btn-font"> -->
+<!-- 			 				Josefine -->
+<!-- 			 				<div style="color:blue;font-size:0.6em">Type</div> -->
+<!-- 			 			</div> -->
+<!-- 			 			<div class="btn-font"> -->
+<!-- 			 				Montserrat -->
+<!-- 			 				<div style="color:blue;font-size:0.6em">Type</div> -->
+<!-- 			 			</div> -->
+<!-- 			 			<div class="btn-font"> -->
+<!-- 			 				Helvetica -->
+<!-- 			 				<div style="color:blue;font-size:0.6em">Type</div> -->
+<!-- 			 			</div> -->
+<!-- 			 			<div class="btn-font font-asul" ng-click="ctrl.changeFont('asul')"> -->
+<!-- 			 				Asul -->
+<!-- 			 				<div style="color:blue;font-size:0.6em">Type</div> -->
+<!-- 			 			</div> -->
+<!-- 			 			<div class="btn-font font-cabin-sketch" ng-click="ctrl.changeFont('cabinSketch')"> -->
+<!-- 			 				Sketch -->
+<!-- 			 				<div style="color:blue;font-size:0.6em">Type</div> -->
+<!-- 			 			</div> -->
+<!-- 			 			<div class="btn-font"> -->
+<!-- 			 				QUICKSAND -->
+<!-- 			 				<div style="color:blue;font-size:0.6em">Type</div> -->
+<!-- 			 			</div> -->
+<!-- 			 			<div class="btn-font"> -->
+<!-- 			 				OVERPASS -->
+<!-- 			 				<div style="color:blue;font-size:0.6em">Type</div> -->
+<!-- 			 			</div> -->
+
+						<div ng-repeat="font in ctrl.fonts" style="font-family:{{font.font}};margin:0.2em;float:left;width:12em">
+							<div ng-click="ctrl.changeFont(font.font)" style="font-family:{{font.font}};font-size:0.8em;text-align:center;padding:0.6em;border:1px solid #000000;background-color:#ffffff;" >
+								<div style="font-weight: bold;color:#000000">{{font.font}}</div>
+								<div style="color: blue">Type</div>
+								<div class="clearfix"></div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+
+
 		 				<div class="clearfix"></div>
 		 			</div>
 		 		</div>
@@ -95,31 +106,38 @@
 		 		</div>
 		 		<div class="clearfix"></div>
 		 	</div>
-		 	
-		 	<div id="teste"></div>
-		 	
-		 	<div id="canvasSlide">
-		 		<div name="slide" ng-repeat="phase in ctrl.phases">
-		 			<div style="font-family:{{ctrl.font}};margin:0.2em;border:1px solid #000000;text-align:center;width:300px;height:200px;float:left">
-			 			{{phase}}
-		 				<div style="clear:both"></div>
-		 			</div>
-		 		</div>
-		 	</div>
+		 
+		 	 
+		 	<div ng-repeat="phase in ctrl.phases">
+	 			<div style="background-image:url(/praizer/static/img/sishelp.png);font-family:{{ctrl.font}};margin:0.2em;border:1px solid #000000;text-align:center;width:300px;height:200px;float:left">
+		 			{{phase}}
+	 				<div style="clear:both"></div>
+	 			</div>
+		 	</div>	
 		 	<div style="clear:both"></div>
 		 	<button type="button" ng-click="ctrl.done()" style="margin-top:0.2em;float:right;padding:0.4em;border:0px;background-color:#00ffed;color:#ffffff;font-size:1.2em;font-weight:bold">Próximo</button>
 		 </div>
 		 
 		<div id="done" ng-show="ctrl.statusDone">
 			<div>Uau! Olha como ficou...</div>
-			<div ng-repeat="phase in ctrl.phases" style="font-family:{{ctrl.font}};margin:0.2em;border:1px solid #000000;text-align:center;width:300px;height:200px;float:left">
-				{{phase}}
-				<div style="clear:both"></div>
-			</div>
+			<div id="canvasSlide">
+		 		<div name="slide" ng-repeat="phase in ctrl.phases">
+					<div style="background-image:url(/praizer/static/img/sishelp.png);font-family:{{ctrl.font}};margin:0.2em;border:1px solid #000000;text-align:center;width:300px;height:200px;float:left">
+		 				{{phase}}
+	 					<div style="clear:both"></div>
+	 				</div>
+				</div>
+		 		<div style="clear:both"></div>
+		 	</div>
 			<div style="clear:both"></div>
 			<button type="button" ng-click="ctrl.download()" style="margin:0.2em auto;padding:0.4em;border:0px;background-color:#00ffed;color:#ffffff;font-size:1.2em;font-weight:bold">Download</button>
 			<div style="clear:both"></div>
 		</div>
+		
+		
+		
+		<button ng-click="ctrl.saveSlide()">teste</button>
+			<div id="img-out"></div>
 		
 		
 		
@@ -143,6 +161,16 @@
 		
 	</div>
 
+<style ng-repeat="font in ctrl.fonts">
+	@font-face {
+		font-family: {{font.font}};
+		src: url(/praiser/uploads/admin/{{font.filename}});
+	}
+</style>
+
+
+
+
 </div>
 
 <script>
@@ -153,7 +181,7 @@ $("#musicLetter").jqte({
 });
 </script>
 
-
+<script src="<c:url value='/static/app/service/font_service.js' />"></script>
 <script src="<c:url value='/static/app/service/slide_service.js' />"></script>
 <script src="<c:url value='/static/app/controller/slide_controller.js' />"></script>
 

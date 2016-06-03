@@ -1,9 +1,11 @@
 'use strict';
 
-App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService',function($scope, $log, $sce,SlideService){
+App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'FontService',function($scope, $log, $sce, SlideService, FontService){
 	self = this;
 	self.slide={};
 	self.slides=[];
+	
+	self.fonts=[];
 	
 	self.musictest='';
 	self.phases=[];
@@ -17,9 +19,41 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService',func
 	
 	self.font = 'arial';
 
+	self.testar = function(){
+		console.log("testar");
+
+		$("[name='slide']").each(function(){
+			console.log($(this).html())
+			$(this).append('<div style="clear:both"></div>');
+			console.log($(this).html())
+			html2canvas($(this), {
+	            onrendered: function(canvas) {
+	                var myImage = canvas.toDataURL("image/png");
+	                window.open(myImage);
+	            }
+	        });
+		})
+		  
+	}
+	
 	self.changeFont = function(font){
 		self.font = font;
 	}
+	
+	
+	self.listFonts = function(){
+		FontService.list()
+			.then(
+					function(response){
+						self.fonts = response;
+					},
+					function(errResponse){
+						console.error("Erro ao buscar as fonts (fetchAllFonts)");
+					}
+			);
+	};
+	
+	self.listFonts();
 	
 	self.upload = function(){
 //		self.slide.musicLetter = self.musictest.replace("\n\n", "<hr/>");
@@ -61,17 +95,28 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService',func
 		
 		self.slide.music="musica";
 		self.slide.artist="artista";
-		self.slide.slide=htmlSlides;
+		self.slide.slide = htmlSlides;
+		self.slide.slidesImages = [];
 		
-		SlideService.create(self.slide)
-			.then(
-					function(response){
-						console.log(response);
-					},
-					function(errResponse){
-						$log.error("Error on saveSlide!")
-					}
-			);
+		var tot = 1;
+		
+		$("[name='slide']").each(function(){
+			//$(this).append('<div style="clear:both"></div>');
+			$(this).find("div").css("float","none")
+			
+			html2canvas($(this), {
+	            onrendered: function(canvas) {
+	                var myImage = canvas.toDataURL("image/jpeg");
+	                //window.open(myImage)
+	                self.slide.slidesImages.push(myImage)
+	                if(tot==$("[name='slide']").length){
+	                	self.create();
+	                }
+	                tot++
+	            }
+	        });
+		})
+		
 	}
 	
 	self.create = function(){
@@ -79,6 +124,9 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService',func
 			.then(
 					function(response){
 						console.log(response);
+						console.log(response.data);
+						console.log(response.data.filename)
+						location = "/praizer/download/"+response.data.filename;
 					},
 					function(errResponse){
 						$log.error("Error on create!")

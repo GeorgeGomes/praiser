@@ -1,10 +1,13 @@
 'use strict';
 
-App.factory('SlideService', ['$http', '$q', '$location', '$log', function($http, $q, $location, $log){
+App.factory('SlideService', ['$http', '$q', '$rootElement', '$location', '$log', function($http, $q, $rootElement, $location, $log){
+	
+	var app = $rootElement.attr('ng-app')
+	var path = $location.protocol() + "://" + $location.host() + ':' + $location.port();
 	
 	return{		
 		list: function(){
-			return $http.get($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/slide/list')
+			return $http.get(path + '/' + app + '/rest/slide/list')
 					.then(
 							function(response){
 								return response.data;
@@ -17,7 +20,7 @@ App.factory('SlideService', ['$http', '$q', '$location', '$log', function($http,
 		},
 		
 		get: function(){
-			return $http.get($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/slide/get')
+			return $http.get(path + '/' + app + '/rest/slide/get')
 					.then(
 							function(response){
 								return response.data;
@@ -30,8 +33,7 @@ App.factory('SlideService', ['$http', '$q', '$location', '$log', function($http,
 		},
 		
 		create: function(slide){
-			console.log(slide)
-			return $http.post($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/slide/create', slide)
+			return $http.post(path + '/' + app + '/rest/slide/create', slide)
 					.then(
 							function(response){
 								return response;
@@ -43,7 +45,7 @@ App.factory('SlideService', ['$http', '$q', '$location', '$log', function($http,
 		},
 		
 		update: function(slide){
-			return $http.put($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/slide/update', slide)
+			return $http.put(path + '/' + app + '/rest/slide/update', slide)
 					.then(
 							function(response){
 								return response.data;
@@ -55,7 +57,7 @@ App.factory('SlideService', ['$http', '$q', '$location', '$log', function($http,
 		},
 		
 		delete: function(slideId){
-			return $http.delete($location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/rest/slide/delete' + slideId)
+			return $http.delete(path + '/' + app + '/rest/slide/delete/' + slideId)
 					.then(
 							function(response){
 								return response.data;

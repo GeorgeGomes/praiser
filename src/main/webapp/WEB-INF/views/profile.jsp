@@ -11,6 +11,9 @@
 		<form name="myUpload">
 			<input type="file" id="file" nv-file-select uploader="uploader" />
 			<br />
+			<div ng-show="ctrl.errorUpload">
+				Faça upload apenas de arquivo "ttf"!
+			</div>
 			<ul>
 				<li ng-repeat="item in uploader.queue">
 					Name:
