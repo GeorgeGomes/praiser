@@ -35,6 +35,10 @@
 		<put-attribute name="body" value="/WEB-INF/views/font.jsp" />
 	</definition>
 	
+	<definition name="/admin/background" extends="AdminTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/background.jsp" />
+	</definition>
+	
 	<definition name="/download" extends="EmptyTemplate">
 		<put-attribute name="content" value="/WEB-INF/views/download.jsp" />
 	</definition>

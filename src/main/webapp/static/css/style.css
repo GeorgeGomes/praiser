@@ -1,26 +1,24 @@
 @CHARSET "ISO-8859-1";
 
-@font-face {
-	font-family: ralewayRegular;
-	src: url(../fonts/Raleway/Raleway-Regular.ttf);
+.slide{
+	margin:0.2em;
+	border:0.1em solid #000000;
+	text-align:center;
+	width:19em;
+	height:11em;
+	background-size:19em 11em;
+	background-repeat:no-repeat;
+	float:left
 }
 
-@font-face {
-	font-family: cabinSketch;
-	src: url(../fonts/CabinSketch/CabinSketch-Regular.ttf);
+.slide div{
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
 }
 
-@font-face {
-	font-family: asul;
-	src: url(../fonts/Asul/Asul-Regular.ttf);
-}
-
-.font-cabin-sketch{
-	font-family:cabinSketch;
-}
-.font-asul{
-	font-family:asul;
-}
 
 .clearfix{
 	clear:both;
@@ -29,7 +27,7 @@
 .btn-font{
 	background-color:#ffffff;
 	padding:0.6em;
-	font-size:1em;
+	font-size:1.2em;
 	color:#000000;
 	border:1px solid #000000;
 	float:left;

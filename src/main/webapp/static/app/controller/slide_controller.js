@@ -1,11 +1,12 @@
 'use strict';
 
-App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'FontService',function($scope, $log, $sce, SlideService, FontService){
+App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'FontService', 'BackgroundService', function($scope, $log, $sce, SlideService, FontService, BackgroundService){
 	self = this;
 	self.slide={};
 	self.slides=[];
 	
 	self.fonts=[];
+	self.backgrounds=[];
 	
 	self.musictest='';
 	self.phases=[];
@@ -16,8 +17,14 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 	self.statusDone = false;
 	self.rawHtml = "";
 	
+	self.downloadStep = 1;
+	
+	
 	
 	self.font = 'arial';
+	self.background = '';
+	self.colorBody = '#000000';
+	self.colorTitle = "#000000";
 
 	self.testar = function(){
 		console.log("testar");
@@ -40,6 +47,23 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 		self.font = font;
 	}
 	
+	self.changeBackground = function(background, colorTitle, colorBody){
+		self.background = background;
+		self.colorTitle = colorTitle;
+		self.colorBody = colorBody;
+	}
+	
+	self.listBackgrounds = function(){
+		BackgroundService.list()
+			.then(
+					function(response){
+						self.backgrounds = response;
+					},
+					function(errResponse){
+						console.error("Erro ao buscar os backgrounds (listBackgrounds)");
+					}
+			);
+	};
 	
 	self.listFonts = function(){
 		FontService.list()
@@ -48,12 +72,13 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 						self.fonts = response;
 					},
 					function(errResponse){
-						console.error("Erro ao buscar as fonts (fetchAllFonts)");
+						console.error("Erro ao buscar as fonts (listFonts)");
 					}
 			);
 	};
 	
 	self.listFonts();
+	self.listBackgrounds();
 	
 	self.upload = function(){
 //		self.slide.musicLetter = self.musictest.replace("\n\n", "<hr/>");
@@ -65,12 +90,18 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 		self.statusPreview = true;
 	}
 	
+	self.htmlDecode = function (myHtml){
+		return myHtml.replace(/&amp;/g, "&").replace(/&gt;/g, ">").replace(/&lt;/g, "<");
+		//return $('<div/>').html(input).html();
+	}
+
 	self.personalize = function(){
 		console.log(self.slide.musicLetter);
 		console.log($("#musicLetter").val());
 		
 		//var txt = $sce.trustAsHtml($("#musicLetter").val());
-		self.phases = $("#musicLetter").val().split("<hr>");
+		var music = self.htmlDecode($("#musicLetter").val());
+		self.phases = music.split("<hr>");
 		self.statusUpload = false;
 		self.statusPreview = false;
 		self.statusPersonalize = true;
@@ -84,6 +115,7 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 	};
 	
 	self.download = function(){
+		self.downloadStep = 1;
 		$('#myModal').modal();
 	}
 	
@@ -123,10 +155,11 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 		SlideService.create(self.slide)
 			.then(
 					function(response){
+						self.downloadStep = 2;
 						console.log(response);
 						console.log(response.data);
 						console.log(response.data.filename)
-						location = "/praizer/download/"+response.data.filename;
+						location = "/praiser/download/"+response.data.filename;
 					},
 					function(errResponse){
 						$log.error("Error on create!")

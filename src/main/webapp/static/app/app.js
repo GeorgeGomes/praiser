@@ -1,6 +1,6 @@
 'use strict';
 
-var App = angular.module('praiser',['ngMaterial', 'ngMessages', 'angularFileUpload']);
+var App = angular.module('praiser',['ngMaterial', 'ngMessages', 'angularFileUpload', 'ngSanitize']);
 
 // ***** Angular Material *****
 App.config(function($mdThemingProvider) {

@@ -1,5 +1,6 @@
 package com.seismaismais.praiser.service.impl;
 
+import java.awt.Dimension;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,6 +30,13 @@ public class DownloadServiceImpl implements DownloadService {
 	@Override
 	public String generatePptx(Slide slide) throws IOException {
 		XMLSlideShow ppt = new XMLSlideShow();
+		
+		Dimension d = new Dimension();
+		// 4:3 780 - 585
+		// 16:9 1040 - 585		
+		
+		d.setSize(1040, 585);
+		ppt.setPageSize(d);
 
 		Iterator<byte[]> imagesIterator = generateImage(slide.getSlidesImages()).iterator();
 

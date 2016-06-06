@@ -9,8 +9,9 @@
 
 	<properties>
 		<project.build.wildfly.deployFolder>C:/developer/servers/wildfly-10.0.0.CR4/standalone/deployments</project.build.wildfly.deployFolder>
-		<project.build.tomcat.deployFolder>C:/developer/servers/apache-tomcat-8.0.28/webapps</project.build.tomcat.deployFolder>
+		<project.catalina.deployFolder>C:/developer/servers/apache-tomcat-8.0.28/webapps</project.catalina.deployFolder>
 		<project.catalina.home>C:/developer/servers/apache-tomcat-8.0.28</project.catalina.home>
+		
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.7</java.version>
 		<hibernate.version>5.1.0.Final</hibernate.version>
@@ -33,18 +34,18 @@
 
 
 
-<dependency>
-  <!-- jsoup HTML parser library @ http://jsoup.org/ -->
-  <groupId>org.jsoup</groupId>
-  <artifactId>jsoup</artifactId>
-  <version>1.9.2</version>
-</dependency>
+		<dependency>
+			<!-- jsoup HTML parser library @ http://jsoup.org/ -->
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.9.2</version>
+		</dependency>
 
 		<dependency>
 			<groupId>com.github.xuwei-k</groupId>
 			<artifactId>html2image</artifactId>
 			<version>0.1.0</version>
-<!-- 			<scope>test</scope> -->
+			<!-- <scope>test</scope> -->
 		</dependency>
 
 		<dependency>
@@ -225,12 +226,12 @@
 			<version>1.2</version>
 		</dependency>
 
-<!-- http://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
-<dependency>
-    <groupId>org.apache.commons</groupId>
-    <artifactId>commons-lang3</artifactId>
-    <version>3.4</version>
-</dependency>
+		<!-- http://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.4</version>
+		</dependency>
 
 
 
@@ -346,7 +347,7 @@
 						<configuration>
 							<tasks>
 								<copy file="target/${project.artifactId}.war"
-									tofile="${project.build.tomcat.deployFolder}/${project.artifactId}.war" />
+									tofile="${project.catalina.deployFolder}/${project.artifactId}.war" />
 							</tasks>
 						</configuration>
 						<goals>
@@ -356,39 +357,7 @@
 				</executions>
 			</plugin>
 
-			<!-- mvn cargo:deploy -->
-			<plugin>
-				<groupId>org.codehaus.cargo</groupId>
-				<artifactId>cargo-maven2-plugin</artifactId>
-				<version>1.4.13</version>
-				<configuration>
-					<container>
-						<containerId>tomcat8x</containerId>
-						<type>remote</type>
-					</container>
-					<configuration>
-						<type>runtime</type>
-						<properties>
-							<cargo.remote.username>tomcat</cargo.remote.username>
-							<cargo.remote.password>tomcat</cargo.remote.password>
-							<cargo.remote.uri>http://10.10.6.125:8090/manager/text</cargo.remote.uri>
-							<cargo.tomcat.manager.url>http://server1:8080/manager</cargo.tomcat.manager.url>
-						</properties>
-					</configuration>
-					<deployables>
-						<deployable>
-							<type>war</type>
-							<properties>
-								<context>/${project.artifactId}</context>
-							</properties>
-							<location>
-								${project.basedir}\target\${project.artifactId}.war
-							</location>
-						</deployable>
-					</deployables>
 
-				</configuration>
-			</plugin>
 		</plugins>
 
 		<resources>
