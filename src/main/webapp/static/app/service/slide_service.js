@@ -4,8 +4,34 @@ App.factory('SlideService', ['$http', '$q', '$rootElement', '$location', '$log',
 	
 	var app = $rootElement.attr('ng-app')
 	var path = $location.protocol() + "://" + $location.host() + ':' + $location.port();
+	var apiMusic = "https://api.vagalume.com.br/search.artmus?limit=8&q="; 
+	var apiLyric = "https://api.vagalume.com.br/search.php?apikey={key}&musid="; 
 	
-	return{		
+	return{
+		searchLyric:function(idMusic){
+			return $http.jsonp(apiLyric + idMusic)
+			.then(
+					function(response){
+						return response.data;
+					},
+					function(errResponse){
+						return $q.reject(errResponse);
+					}
+			)
+		},
+		
+		searchMusic: function(query){		
+			return $http.jsonp(apiMusic + query)
+				.then(
+						function(response){
+							return response.data;
+						},
+						function(errResponse){
+							return $q.reject(errResponse);
+						}
+				)
+		},
+		
 		list: function(){
 			return $http.get(path + '/' + app + '/rest/slide/list')
 					.then(

@@ -11,15 +11,22 @@
 		<div>
 			<div id="upload" ng-show="ctrl.statusUpload" style="width:33em;margin:8em auto">
 				<div style="width:31em;margin:8em auto">
-					<input style="float:left;display:block;border-right:0px;border-left:1px solid #BEBEBE;border-top:1px solid #BEBEBE;border-bottom:1px solid #BEBEBE;font-size:1.4em;padding:0.2em;width:20em;height:40px" type="text" name="musica" id="musica" placeholder="Qual música você quer?"/>
+					<input ng-model="ctrl.music" ng-keydown="ctrl.searchMusic()" style="float:left;display:block;border-right:0px;border-left:1px solid #BEBEBE;border-top:1px solid #BEBEBE;border-bottom:1px solid #BEBEBE;font-size:1.4em;padding:0.2em;width:20em;height:40px" type="text" name="musica" id="musica" placeholder="Qual música você quer?"/>
 	   				<div style="width:3em;height:40px;border-bottom:1px solid #BEBEBE;border-left:0px;border-top:1px solid #BEBEBE;border-right:1px solid #BEBEBE;float:left"><img src="static/img/search.png" alt="Buscar" width="30" style="margin:5px"/></div>
-	   				
+	   				<div class="clearfix"></div>
+	   				<div>
+	   					<div style="position:absolute">		   					
+		   					<div class="list-group" style="width:31em">
+	  							<button type="button" class="list-group-item" ng-repeat="lyric in ctrl.lyrics.response.docs" ng-if="lyric.title != null" ng-click="ctrl.selectMusic(lyric)">
+	  								{{lyric.title}} - {{lyric.band}}
+	  							</button>
+							</div>
+	   					</div>
+	   				</div>
 					<div style="clear:both"></div>
 					
 					<button type="button" ng-click="ctrl.upload()" style="margin-top:0.2em;float:right;padding:0.4em;border:0px;background-color:#00ffed;color:#ffffff;font-size:1.2em;font-weight:bold">Fazer upload da letra</button>
 					<div style="clear:both"></div>
-					
-					<textarea id="musictest" ng-model="ctrl.musictest"></textarea>
 					
 				</div>
 			</div>
@@ -82,6 +89,10 @@
 			 		<div style="float:left;width:33%">
 			 			<div style="padding:2em">
 			 			
+			 				<div style="text-align:center;font-weight:bold;width:100px;height:75px;background-color:#ffffff;margin:0 auto;font-size:2em;color:gray;padding:0.6em" ng-click="ctrl.selectRatio(1333,1000)">4:3</div>
+			 				
+			 				<div style="text-align:center;font-weight:bold;width:133px;height:75px;background-color:#ffffff;margin:1em auto;font-size:2em;color:gray;padding:0.6em" ng-click="ctrl.selectRatio(1777,1000)">16:9</div>
+			 			
 			 			</div>
 			 			<div class="clearfix"></div>
 			 		</div>
@@ -91,7 +102,7 @@
 		 	 
 			<div style="max-width: 1100px;margin:2em auto;">
 			 	<div ng-repeat="phase in ctrl.phases">
-		 			<div class="slide" style="color:{{ctrl.colorBody}};background-image:url(/praiser/uploads/admin/{{ctrl.background}});font-family:{{ctrl.font}}">
+		 			<div class="slide" style="background-size:{{ctrl.slideWidth / 7}}px {{ctrl.slideHeight / 7}}px;width:{{ctrl.slideWidth / 7}}px;height:{{ctrl.slideHeight / 7}}px;color:{{ctrl.slideColorBody}};background-image:url(/praiser/uploads/admin/{{ctrl.slideBackground}});font-family:{{ctrl.slideFont}}">
 			 			<div ng-bind-html="phase"></div>
 		 				<div class="clearfix"></div>
 		 			</div>
@@ -104,20 +115,38 @@
 		<div id="done" ng-show="ctrl.statusDone">
 			<div style="max-width: 1100px;margin:2em auto;padding-top:3px">
 				<div style="font-size:2em;font-weight:bold;color:#fd5dff;padding-bottom:0.5em">Uau! Olha como ficou...</div>
-				<div id="canvasSlide" >
 			 		<div ng-repeat="phase in ctrl.phases">
-		 				<div name="slide" class="slide" style="color:{{ctrl.colorBody}};background-image:url(/praiser/uploads/admin/{{ctrl.background}});font-family:{{ctrl.font}}">
+		 				<div class="slide" style="background-size:{{ctrl.slideWidth / 7}}px {{ctrl.slideHeight / 7}}px;width:{{ctrl.slideWidth / 7}}px;height:{{ctrl.slideHeight / 7}}px;color:{{ctrl.slideColorBody}};background-image:url(/praiser/uploads/admin/{{ctrl.slideBackground}});font-family:{{ctrl.slideFont}}">
 				 			<div ng-bind-html="phase"></div>
 		 					<div class="clearfix"></div>
 		 				</div>
 			 		</div>
 		 			<div class="clearfix"></div>
-		 		</div>
 		 	</div>
 			<div style="clear:both"></div>
 			<button type="button" ng-click="ctrl.download()" style="display:block;margin:0.2em auto;padding:0.4em;border:0px;background-color:#7d01a1;color:#ffffff;font-size:1.6em;font-weight:bold;width:14em"><img src="static/img/download-from-cloud.png" alt="download" width="30" style="margin:5px"/>Download</button>
 			<div style="clear:both"></div>
 		</div>		
+		
+		
+		
+		
+		
+		
+		
+		
+		<div id="canvasSlide" style="display:none">
+	<div ng-repeat="phase in ctrl.phases">
+		<div class="slideSave" style="background-size:{{ctrl.slideWidth}}px {{ctrl.slideHeight}}px;width:{{ctrl.slideWidth}}px;height:{{ctrl.slideHeight}}px;color:{{ctrl.slideColorBody}};background-image:url(/praiser/uploads/admin/{{ctrl.slideBackground}});font-family:{{ctrl.slideFont}}">
+			<div ng-bind-html="phase"></div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</div>	
+		
+		
+		
 		
 		
 		
@@ -162,6 +191,8 @@
 		</div>
 	</div>
 </div>
+
+	
 		
 	</div>
 

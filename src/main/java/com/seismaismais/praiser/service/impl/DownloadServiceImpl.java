@@ -35,7 +35,10 @@ public class DownloadServiceImpl implements DownloadService {
 		// 4:3 780 - 585
 		// 16:9 1040 - 585		
 		
-		d.setSize(1040, 585);
+		// 4:3 1333 - 1000
+		// 16:9 1777 - 1000
+		
+		d.setSize(slide.getWidth() /2, slide.getHeight()/2);
 		ppt.setPageSize(d);
 
 		Iterator<byte[]> imagesIterator = generateImage(slide.getSlidesImages()).iterator();

@@ -8,7 +8,10 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 	self.fonts=[];
 	self.backgrounds=[];
 	
-	self.musictest='';
+	
+	self.ratio={};
+	
+	
 	self.phases=[];
 	
 	self.statusUpload = true;
@@ -19,13 +22,67 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 	
 	self.downloadStep = 1;
 	
+	self.music="";
+	self.lyrics=[];
+	self.selectLyricId="";
+	
+	self.slideFont = 'arial';
+	self.slideBackground = '';
+	self.slideColorBody = '#000000';
+	self.slideColorTitle = "#000000";
+	//16:9 -  1777px 1000px
+	//4:3  - 1333px 1000px
+	self.slideWidth = '1333';
+	self.slideHeight = '1000';
+	
+	self.selectRatio = function(width, height){
+		self.slideWidth = width;
+		self.slideHeight = height;
+	}
+	
+	self.selectMusic = function(lyric){
+		self.selectLyricId = lyric.id;
+		self.music = lyric.title + " - " + lyric.band;	
+		self.lyrics=[];
+	}
+	
+	self.searchLyric = function(idMusic){
+		
+		return "Nosso Deus\n\nNosso Deus é soberano\nEle reina antes a fundação do mundo\n\nA terra era sem forma e vazia\nE o espirito do nosso Deus\nSe movia sobre a face das águas\n\nFoi Ele quem criou o céu dos céus\nFez separação das águas\nE a terra seca\n";
+		
+//		SlideService.searchLyric(idMusic)
+//			.then(
+//				function(response){
+//					console.log(response);
+//				},
+//				function(errResponse){
+//					$log.error("Error on create!")
+//				}
+//			);
+	}
 	
 	
-	self.font = 'arial';
-	self.background = '';
-	self.colorBody = '#000000';
-	self.colorTitle = "#000000";
-
+	self.searchMusic = function(){
+		console.log(self.music);
+		if(self.music.length > 3){
+			console.log("Chamou")
+			
+			self.lyrics = {"response":{"numFound":17557,"start":0,"docs":[{"id":"l3ade68b8g462850b3","langID":1,"url":"/wesley-safadao/vou-dar-virote.html","title":"Vou Dar Virote","band":"Wesley Safadão"},{"id":"l3ade68b8gcc7f80b3","langID":1,"url":"/jorge-e-mateus/vou-voando.html","title":"Vou Voando","band":"Jorge e Mateus"},{"id":"l3ade68b8gb86770b3","langID":2,"url":"/rihanna/dance-in-the-dark.html","title":"Dance In The Dark","band":"Rihanna"},{"id":"l3ade68b8g28dc30b3","langID":2,"url":"/katy-perry/dark-horse-feat-juicy-j.html","title":"Dark Horse (Feat. Juicy J)","band":"Katy Perry"},{"id":"l3ade68b8g99bb40b3","langID":2,"url":"/shakira/dare-la-la-la.html","title":"Dare (La La La)","band":"Shakira"},{"id":"b3ade68b5g3ce8eda3","url":"/sampa-crew/","band":"Sampa Crew"},{"id":"b3ade68b7g41272ea3","url":"/vou-zuar/","band":"Vou Zuar"},{"id":"b3ade68b6g0f4aeda3","url":"/darvin/","band":"Darvin"},{"id":"b3ade68b5gded8eda3","url":"/daryl-hall-john-oates/","band":"Daryl Hall & John Oates"},{"id":"b3ade68b7gbf5d0ea3","url":"/grupo-vou-pro-sereno/","band":"Grupo Vou Pro Sereno"}]},"highlighting":{"l3ade68b8g462850b3":{"letra":[" noite não tem hora pra acabar\n\nEu <em>vou</em> <em>dar</em> virote, eu <em>vou</em> <em>dar</em> virote\nEu sou patrão to estourado e essa"],"title":["<em>Vou</em> <em>Dar</em> <em>Virote</em>"]},"l3ade68b8gcc7f80b3":{"letra":[" você tá tão ruim, oh, oh, oh\n\nAmanheceu\nE no meu sonho teu sorriso me chamando\nEu <em>vou</em> voando e eu <em>vou</em>"],"title":["<em>Vou</em> Voando"]},"l3ade68b8gb86770b3":{"title":["Dance In The <em>Dar</em>k"]},"l3ade68b8g28dc30b3":{"letra":["\n\nSo you wanna play with magic\nBoy, you should know whatcha falling for\nBaby do you <em>dare</em> to do this"],"title":["<em>Dar</em>k Horse (Feat. Juicy J)"]},"l3ade68b8g99bb40b3":{"letra":["La la la la la\nLa la la la la\nLa la la la la\nLa la la la la\n\nI <em>dare</em> you\n(Leggo, leggo, leggo, leggo"],"title":["<em>Dar</em>e (La La La)"]},"b3ade68b5g3ce8eda3":{},"b3ade68b7g41272ea3":{"band":["<em>Vou</em> Zuar"]},"b3ade68b6g0f4aeda3":{"band":["<em>Dar</em>vin"]},"b3ade68b5gded8eda3":{"band":["<em>Dar</em>yl Hall & John Oates"]},"b3ade68b7gbf5d0ea3":{"band":["Grupo <em>Vou</em> Pro Sereno"]}}}
+			
+//			SlideService.searchMusic(self.music)
+//				.then(
+//					function(response){
+//						console.log(response);
+//					},
+//					function(errResponse){
+//						$log.error("Error on create!")
+//					}
+//				);
+		}
+	}
+	
+	
+	
 	self.testar = function(){
 		console.log("testar");
 
@@ -48,9 +105,9 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 	}
 	
 	self.changeBackground = function(background, colorTitle, colorBody){
-		self.background = background;
-		self.colorTitle = colorTitle;
-		self.colorBody = colorBody;
+		self.slideBackground = background;
+		self.slideColorTitle = colorTitle;
+		self.slideColorBody = colorBody;
 	}
 	
 	self.listBackgrounds = function(){
@@ -80,9 +137,13 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 	self.listFonts();
 	self.listBackgrounds();
 	
-	self.upload = function(){
-//		self.slide.musicLetter = self.musictest.replace("\n\n", "<hr/>");
-		var txt = self.musictest.replace(/\\n\\n/g, "<hr>");
+	self.upload = function(){		
+
+		
+		//var txt = self.musictest.replace(/\\n\\n/g, "<hr>");
+		
+		var txt = JSON.stringify(self.searchLyric(self.selectLyricId));
+		txt = txt.replace(/\\n\\n/g, "<hr>");
 		txt = txt.replace(/\\n/g, "<br>")
 		
 		$("#musicLetter").jqteVal(txt);
@@ -121,7 +182,7 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 	
 	self.saveSlide = function(){
 		
-		console.log("savedownloads")
+		console.log("savedownloads")	
 		var htmlSlides = $("#canvasSlide").html();
 		console.log(htmlSlides);
 		
@@ -129,19 +190,36 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 		self.slide.artist="artista";
 		self.slide.slide = htmlSlides;
 		self.slide.slidesImages = [];
+		self.slide.width = self.slideWidth;
+		self.slide.height = self.slideHeight;
 		
 		var tot = 1;
-		
-		$("[name='slide']").each(function(){
-			//$(this).append('<div style="clear:both"></div>');
-			$(this).find("div").css("float","none")
+		$("#canvasSlide").css("display","block");
+		$(".slideSave").each(function(){
+			
+//			html2canvas($(this), {onclone: function(document) {
+//				console.log(document);
+//				$(document).css("display","block");
+//            }}).then(function(canvas) {
+//                var myImage = canvas.toDataURL("image/jpeg");
+//                //window.open(myImage)
+//                self.slide.slidesImages.push(myImage)
+//                if(tot==$(".slideSave").length){
+//                	self.create();
+//                }
+//                tot++
+//            }).catch(function(error) {
+//                console.log("eror")
+//            });
+			
 			
 			html2canvas($(this), {
 	            onrendered: function(canvas) {
 	                var myImage = canvas.toDataURL("image/jpeg");
 	                //window.open(myImage)
 	                self.slide.slidesImages.push(myImage)
-	                if(tot==$("[name='slide']").length){
+	                if(tot==$(".slideSave").length){
+	                	$("#canvasSlide").css("display","none");
 	                	self.create();
 	                }
 	                tot++

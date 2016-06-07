@@ -38,6 +38,13 @@ public class Slide implements Serializable{
 	@Column(name="SLIDE", nullable=false)
 	@Type(type="text")
 	private String slide;
+	
+	@Column(name="WIDTH", nullable=true)
+	private Double width;
+	
+	@Column(name="HEIGHT", nullable=true)
+	private Double height;
+	
 
 	@Transient
 	private String[] slidesImages;
@@ -90,4 +97,20 @@ public class Slide implements Serializable{
 		this.slidesImages = slidesImages;
 	}
 
+	public Double getWidth() {
+		return width;
+	}
+
+	public void setWidth(Double width) {
+		this.width = width;
+	}
+
+	public Double getHeight() {
+		return height;
+	}
+
+	public void setHeight(Double height) {
+		this.height = height;
+	}
+	
 }

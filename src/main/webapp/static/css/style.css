@@ -4,14 +4,26 @@
 	margin:0.2em;
 	border:0.1em solid #000000;
 	text-align:center;
-	width:19em;
-	height:11em;
-	background-size:19em 11em;
 	background-repeat:no-repeat;
-	float:left
+	float:left;
+	font-weight:bold;
 }
 
 .slide div{
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+.slideSave{
+	text-align:center;
+	background-repeat:no-repeat;
+	font-weight:bold;
+}
+
+.slideSave div{
 	position: relative;
 	top: 50%;
 	-webkit-transform: translateY(-50%);
