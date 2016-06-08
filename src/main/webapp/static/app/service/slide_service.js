@@ -4,8 +4,9 @@ App.factory('SlideService', ['$http', '$q', '$rootElement', '$location', '$log',
 	
 	var app = $rootElement.attr('ng-app')
 	var path = $location.protocol() + "://" + $location.host() + ':' + $location.port();
-	var apiMusic = "https://api.vagalume.com.br/search.artmus?limit=8&q="; 
-	var apiLyric = "https://api.vagalume.com.br/search.php?apikey={key}&musid="; 
+	var apiMusic = "https://api.vagalume.com.br/search.artmus?callback=JSON_CALLBACK&limit=8&q="; 
+	var apiKey = "52b46489c2423c702f15c6f883da426a"
+	var apiLyric = "https://api.vagalume.com.br/search.php?callback=JSON_CALLBACK&apikey=" + apiKey + "&musid="; 
 	
 	return{
 		searchLyric:function(idMusic){
@@ -20,16 +21,20 @@ App.factory('SlideService', ['$http', '$q', '$rootElement', '$location', '$log',
 			)
 		},
 		
-		searchMusic: function(query){		
-			return $http.jsonp(apiMusic + query)
-				.then(
-						function(response){
-							return response.data;
-						},
-						function(errResponse){
-							return $q.reject(errResponse);
-						}
-				)
+		searchMusic: function(query){
+			return 
+			
+			
+//			return $http.jsonp(apiMusic + query)
+//				.then(
+//						function(response){
+//							return response.data;
+//						},
+//						function(errResponse){
+//							return $q.reject(errResponse);
+//						}
+//				)
+			
 		},
 		
 		list: function(){

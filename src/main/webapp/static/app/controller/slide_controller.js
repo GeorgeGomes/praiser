@@ -8,6 +8,10 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 	self.fonts=[];
 	self.backgrounds=[];
 	
+	var apiMusic = "https://api.vagalume.com.br/search.artmus?&limit=8&q=";
+	var apiKey = "52b46489c2423c702f15c6f883da426a"
+	var apiLyric = "https://api.vagalume.com.br/search.php?apikey=" + apiKey + "&musid="; 	
+	
 	
 	self.ratio={};
 	
@@ -48,36 +52,47 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 	
 	self.searchLyric = function(idMusic){
 		
-		return "Nosso Deus\n\nNosso Deus é soberano\nEle reina antes a fundação do mundo\n\nA terra era sem forma e vazia\nE o espirito do nosso Deus\nSe movia sobre a face das águas\n\nFoi Ele quem criou o céu dos céus\nFez separação das águas\nE a terra seca\n";
-		
-//		SlideService.searchLyric(idMusic)
-//			.then(
-//				function(response){
-//					console.log(response);
-//				},
-//				function(errResponse){
-//					$log.error("Error on create!")
-//				}
-//			);
+		//return "Nosso Deus\n\nNosso Deus é soberano\nEle reina antes a fundação do mundo\n\nA terra era sem forma e vazia\nE o espirito do nosso Deus\nSe movia sobre a face das águas\n\nFoi Ele quem criou o céu dos céus\nFez separação das águas\nE a terra seca\n";
+			
+
 	}
 	
-	
+
 	self.searchMusic = function(){
 		console.log(self.music);
-		if(self.music.length > 3){
+		if(self.music.length >= 3){
 			console.log("Chamou")
 			
-			self.lyrics = {"response":{"numFound":17557,"start":0,"docs":[{"id":"l3ade68b8g462850b3","langID":1,"url":"/wesley-safadao/vou-dar-virote.html","title":"Vou Dar Virote","band":"Wesley Safadão"},{"id":"l3ade68b8gcc7f80b3","langID":1,"url":"/jorge-e-mateus/vou-voando.html","title":"Vou Voando","band":"Jorge e Mateus"},{"id":"l3ade68b8gb86770b3","langID":2,"url":"/rihanna/dance-in-the-dark.html","title":"Dance In The Dark","band":"Rihanna"},{"id":"l3ade68b8g28dc30b3","langID":2,"url":"/katy-perry/dark-horse-feat-juicy-j.html","title":"Dark Horse (Feat. Juicy J)","band":"Katy Perry"},{"id":"l3ade68b8g99bb40b3","langID":2,"url":"/shakira/dare-la-la-la.html","title":"Dare (La La La)","band":"Shakira"},{"id":"b3ade68b5g3ce8eda3","url":"/sampa-crew/","band":"Sampa Crew"},{"id":"b3ade68b7g41272ea3","url":"/vou-zuar/","band":"Vou Zuar"},{"id":"b3ade68b6g0f4aeda3","url":"/darvin/","band":"Darvin"},{"id":"b3ade68b5gded8eda3","url":"/daryl-hall-john-oates/","band":"Daryl Hall & John Oates"},{"id":"b3ade68b7gbf5d0ea3","url":"/grupo-vou-pro-sereno/","band":"Grupo Vou Pro Sereno"}]},"highlighting":{"l3ade68b8g462850b3":{"letra":[" noite não tem hora pra acabar\n\nEu <em>vou</em> <em>dar</em> virote, eu <em>vou</em> <em>dar</em> virote\nEu sou patrão to estourado e essa"],"title":["<em>Vou</em> <em>Dar</em> <em>Virote</em>"]},"l3ade68b8gcc7f80b3":{"letra":[" você tá tão ruim, oh, oh, oh\n\nAmanheceu\nE no meu sonho teu sorriso me chamando\nEu <em>vou</em> voando e eu <em>vou</em>"],"title":["<em>Vou</em> Voando"]},"l3ade68b8gb86770b3":{"title":["Dance In The <em>Dar</em>k"]},"l3ade68b8g28dc30b3":{"letra":["\n\nSo you wanna play with magic\nBoy, you should know whatcha falling for\nBaby do you <em>dare</em> to do this"],"title":["<em>Dar</em>k Horse (Feat. Juicy J)"]},"l3ade68b8g99bb40b3":{"letra":["La la la la la\nLa la la la la\nLa la la la la\nLa la la la la\n\nI <em>dare</em> you\n(Leggo, leggo, leggo, leggo"],"title":["<em>Dar</em>e (La La La)"]},"b3ade68b5g3ce8eda3":{},"b3ade68b7g41272ea3":{"band":["<em>Vou</em> Zuar"]},"b3ade68b6g0f4aeda3":{"band":["<em>Dar</em>vin"]},"b3ade68b5gded8eda3":{"band":["<em>Dar</em>yl Hall & John Oates"]},"b3ade68b7gbf5d0ea3":{"band":["Grupo <em>Vou</em> Pro Sereno"]}}}
+			//self.lyrics = {"response":{"numFound":17557,"start":0,"docs":[{"id":"l3ade68b8g462850b3","langID":1,"url":"/wesley-safadao/vou-dar-virote.html","title":"Vou Dar Virote","band":"Wesley Safadão"},{"id":"l3ade68b8gcc7f80b3","langID":1,"url":"/jorge-e-mateus/vou-voando.html","title":"Vou Voando","band":"Jorge e Mateus"},{"id":"l3ade68b8gb86770b3","langID":2,"url":"/rihanna/dance-in-the-dark.html","title":"Dance In The Dark","band":"Rihanna"},{"id":"l3ade68b8g28dc30b3","langID":2,"url":"/katy-perry/dark-horse-feat-juicy-j.html","title":"Dark Horse (Feat. Juicy J)","band":"Katy Perry"},{"id":"l3ade68b8g99bb40b3","langID":2,"url":"/shakira/dare-la-la-la.html","title":"Dare (La La La)","band":"Shakira"},{"id":"b3ade68b5g3ce8eda3","url":"/sampa-crew/","band":"Sampa Crew"},{"id":"b3ade68b7g41272ea3","url":"/vou-zuar/","band":"Vou Zuar"},{"id":"b3ade68b6g0f4aeda3","url":"/darvin/","band":"Darvin"},{"id":"b3ade68b5gded8eda3","url":"/daryl-hall-john-oates/","band":"Daryl Hall & John Oates"},{"id":"b3ade68b7gbf5d0ea3","url":"/grupo-vou-pro-sereno/","band":"Grupo Vou Pro Sereno"}]},"highlighting":{"l3ade68b8g462850b3":{"letra":[" noite não tem hora pra acabar\n\nEu <em>vou</em> <em>dar</em> virote, eu <em>vou</em> <em>dar</em> virote\nEu sou patrão to estourado e essa"],"title":["<em>Vou</em> <em>Dar</em> <em>Virote</em>"]},"l3ade68b8gcc7f80b3":{"letra":[" você tá tão ruim, oh, oh, oh\n\nAmanheceu\nE no meu sonho teu sorriso me chamando\nEu <em>vou</em> voando e eu <em>vou</em>"],"title":["<em>Vou</em> Voando"]},"l3ade68b8gb86770b3":{"title":["Dance In The <em>Dar</em>k"]},"l3ade68b8g28dc30b3":{"letra":["\n\nSo you wanna play with magic\nBoy, you should know whatcha falling for\nBaby do you <em>dare</em> to do this"],"title":["<em>Dar</em>k Horse (Feat. Juicy J)"]},"l3ade68b8g99bb40b3":{"letra":["La la la la la\nLa la la la la\nLa la la la la\nLa la la la la\n\nI <em>dare</em> you\n(Leggo, leggo, leggo, leggo"],"title":["<em>Dar</em>e (La La La)"]},"b3ade68b5g3ce8eda3":{},"b3ade68b7g41272ea3":{"band":["<em>Vou</em> Zuar"]},"b3ade68b6g0f4aeda3":{"band":["<em>Dar</em>vin"]},"b3ade68b5gded8eda3":{"band":["<em>Dar</em>yl Hall & John Oates"]},"b3ade68b7gbf5d0ea3":{"band":["Grupo <em>Vou</em> Pro Sereno"]}}}
+			
+			jQuery.getJSON(
+					apiMusic + self.music, function(data) {
+						console.log( "success" );
+						console.log(data);
+						self.lyrics = data;
+					})
+					  .done(function() {
+					    console.log( "second success" );
+					  })
+					  .fail(function() {
+					    console.log( "error" );
+					  })
+					  .always(function() {
+					    console.log( "complete" );
+					  });
 			
 //			SlideService.searchMusic(self.music)
 //				.then(
 //					function(response){
 //						console.log(response);
+//						self.lyrics = response;
 //					},
 //					function(errResponse){
 //						$log.error("Error on create!")
 //					}
 //				);
+		}else{
+			self.lyrics = [];
 		}
 	}
 	
@@ -142,13 +157,32 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 		
 		//var txt = self.musictest.replace(/\\n\\n/g, "<hr>");
 		
-		var txt = JSON.stringify(self.searchLyric(self.selectLyricId));
-		txt = txt.replace(/\\n\\n/g, "<hr>");
-		txt = txt.replace(/\\n/g, "<br>")
 		
-		$("#musicLetter").jqteVal(txt);
-		self.musictest = "";
-		self.statusPreview = true;
+		SlideService.searchLyric(self.selectLyricId)
+		.then(
+			function(response){
+				
+				var txt = JSON.stringify(response.mus[0].text);
+				txt = txt.replace(/\\n\\n/g, "<hr>");
+				txt = txt.replace(/\\n/g, "<br>")
+				
+				$("#musicLetter").jqteVal(txt);
+				self.musictest = "";
+				self.statusPreview = true;
+				
+				console.log(response);
+			},
+			function(errResponse){
+				$log.error("Error on create!")
+			}
+		);
+		
+		
+		
+		
+		
+		
+		
 	}
 	
 	self.htmlDecode = function (myHtml){
