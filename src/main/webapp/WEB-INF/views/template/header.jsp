@@ -3,7 +3,7 @@
 
 <div style="background-color: #000000; width: 100%; padding: 1em; color: #ffffff">
 	<div style="font-size: 2em; float: left; width: 3em">
-		<a href="/praizer/" style="color: #ffffff"><img src="static/img/logo-praiser.png" alt="" style="width:120px"/></a>
+		<a href="/praiser/" style="color: #ffffff"><img src="static/img/logo-praiser.png" alt="" style="width:120px"/></a>
 	</div>
 	
 		
@@ -18,7 +18,7 @@
 		<sec:authorize access="isAuthenticated()">
 			<div class="dropdown" style="margin-left:0.2em;width:16em">
 				<div class="dropdown-toggle" id="dropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<img ng-src="{{ ctrl.user.imagemProfile != null && '/praizer/images/' + ctrl.user.imagemProfile || 'static/img/default-user.png' }}" style="margin:0px 0px 0px 3em;float:left;border-radius:100%;width:40px;height:40px;border:4px solid #ffffff" />
+					<img ng-src="{{ ctrl.user.imagemProfile != null && '/praiser/uploads/user/' + ctrl.user.imagemProfile || 'static/img/default-user.png' }}" style="margin:0px 0px 0px 3em;float:left;border-radius:100%;width:40px;height:40px;border:4px solid #ffffff" />
 					<div style="float:left;width:100px;margin-left:0.6em;padding-top:0.6em">
 						<span style="color:#ffffff;font-weight:bold;font-size:16px">{{ctrl.user.fullname}}</span>
 					</div>

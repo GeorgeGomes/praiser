@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="<c:url value="/static/css/angular-material.min.css"/>" />
 
 <script src="<c:url value="/static/js/jquery.min.js"/>"></script>
+<script src="<c:url value="/static/js/jquery.overflowing.js"/>"></script>
 <script src="<c:url value="/static/js/bootstrap.min.js"/>"></script>
 
 <script src="<c:url value="/static/js/html2canvas.min.js"/>"></script>

@@ -5,7 +5,7 @@
 <div style="padding-top:0.2em;padding-bottom:0.2em;font-size:3em;font-weight:bold">Profile</div>
 <div style="clear:both"></div>
 	<div style="background-color: #ffffff; border: 1px solid red; width: 300px; float: left">
-		<img ng-src="{{ ctrl.user.imagemProfile != null && '/praizer/images/' + ctrl.user.imagemProfile || 'static/img/default-user.png' }}" style="display: block; margin: 0 auto; border-radius: 100%; width: 120px; height: 120px; border: 4px solid #ffffff" />
+		<img ng-src="{{ ctrl.user.imagemProfile != null && '/praiser/uploads/user/' + ctrl.user.imagemProfile || 'static/img/default-user.png' }}" style="display: block; margin: 0 auto; border-radius: 100%; width: 120px; height: 120px; border: 4px solid #ffffff" />
 		
 
 		<form name="myUpload">

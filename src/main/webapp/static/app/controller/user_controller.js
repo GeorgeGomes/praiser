@@ -78,7 +78,7 @@ App.controller('UserController', ['$scope', '$log', '$rootElement', '$mdDialog',
 						console.log(response);
 						if(response.status == 201){
 							$log.debug("User created!")
-							var url = $location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praizer/';
+							var url = $location.protocol() + "://" + $location.host() + ':' + $location.port() + '/praiser/';
 							$window.location.href = url; 
 						}
 					},

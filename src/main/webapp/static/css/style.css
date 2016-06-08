@@ -1,5 +1,14 @@
 @CHARSET "ISO-8859-1";
 
+.slide1{
+	margin:0.2em;
+	border:0.1em solid #000000;
+	text-align:center;
+	background-repeat:no-repeat;
+	font-weight:bold;
+	overflow-y: hidden;
+}
+
 .slide{
 	margin:0.2em;
 	border:0.1em solid #000000;
@@ -7,6 +16,7 @@
 	background-repeat:no-repeat;
 	float:left;
 	font-weight:bold;
+	overflow-y: hidden;
 }
 
 .slide div{
@@ -21,6 +31,7 @@
 	text-align:center;
 	background-repeat:no-repeat;
 	font-weight:bold;
+	overflow-y: hidden;
 }
 
 .slideSave div{
