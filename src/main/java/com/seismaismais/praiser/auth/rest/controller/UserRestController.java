@@ -104,7 +104,7 @@ public class UserRestController {
 				
 				byte[] bytes = file.getBytes();
 				BufferedOutputStream stream = new BufferedOutputStream(
-						new FileOutputStream(new File("/Users/georgeg/Desktop/praizer/" + name)));
+						new FileOutputStream(new File("/praiser/" + name)));
 				stream.write(bytes);
 				stream.close();
 				

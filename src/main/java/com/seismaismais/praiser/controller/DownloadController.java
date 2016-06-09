@@ -36,7 +36,7 @@ public class DownloadController {
 	 throws Exception {
 	 Slide slide = slideService.findByFilename(filename);
 	
-	 FileInputStream pptFile = new FileInputStream("/Users/georgeg/Desktop/praizer/" + slide.getFilename() + ".pptx");
+	 FileInputStream pptFile = new FileInputStream("/praiser/" + slide.getFilename() + ".pptx");
 	 
 	 byte[] output = IOUtils.toByteArray(pptFile);
 			 

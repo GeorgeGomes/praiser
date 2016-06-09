@@ -55,7 +55,7 @@ public class DownloadServiceImpl implements DownloadService {
 		slide.setFilename(fileName);
 		slideService.update(slide);
 		
-		FileOutputStream out = new FileOutputStream("/Users/georgeg/Desktop/praizer/" + fileName + ".pptx");
+		FileOutputStream out = new FileOutputStream("/praiser/" + fileName + ".pptx");
 		ppt.write(out);
 		out.close();
 		ppt.close();
@@ -70,7 +70,7 @@ public class DownloadServiceImpl implements DownloadService {
 			for (int i = 0; i < slidesBase64.length; i++) {
 				byte[] image;
 				image = FileUtil.convertBase64ToByte(FileUtil.clearStringBase64(slidesBase64[i]));
-				FileUtil.convertBase64ToImage(FileUtil.clearStringBase64(slidesBase64[i]), "/Users/georgeg/Desktop/praizer/"+ FileUtil.generateUniqueFileName() + ".jpg");
+				FileUtil.convertBase64ToImage(FileUtil.clearStringBase64(slidesBase64[i]), "/praiser/"+ FileUtil.generateUniqueFileName() + ".jpg");
 				imagesList.add(image);
 			}
 		} catch (IOException e) {
