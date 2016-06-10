@@ -58,16 +58,7 @@
 			 		<div style="float:left;width:34%">
 			 			<div style="padding:2em">
 	
-			 				<div ng-repeat="background in ctrl.backgrounds">
-								<div ng-click="ctrl.changeBackground(background.filename, background.colorTitle, background.colorBody)" style="height:90px;background-repeat:no-repeat;background-image:url(/praiser/uploads/admin/{{background.filename}});background-size:160px 90px;margin:0.2em;float:left;text-align:center;padding:0.6em;width:160px;border:1px solid #000000;">
-									<div style="width:50%;float:left;margin-top:20px">
-										<div style="margin:0 auto;border-radius:100%;background-color:{{background.colorTitle}};width:30px;height:30px"></div>
-									</div>
-									<div style="width:50%;float:left;margin-top:20px">
-										<div style="margin:0 auto;border-radius:100%;background-color:{{background.colorBody}};width:30px;height:30px"></div>
-									</div>
-								</div>
-							</div>	
+			 			
 							
 			 				<div class="clearfix"></div>
 			 			</div>
@@ -77,10 +68,7 @@
 			 		<div style="float:left;width:33%">
 			 			<div style="padding:2em">
 			 			
-			 				<div style="text-align:center;font-weight:bold;width:100px;height:75px;background-color:#ffffff;margin:0 auto;font-size:2em;color:gray;padding:0.6em" ng-click="ctrl.selectRatio(1333,1000)">4:3</div>
 			 				
-			 				<div style="text-align:center;font-weight:bold;width:133px;height:75px;background-color:#ffffff;margin:1em auto;font-size:2em;color:gray;padding:0.6em" ng-click="ctrl.selectRatio(1777,1000)">16:9</div>
-			 			
 			 			</div>
 			 			<div class="clearfix"></div>
 			 		</div>
@@ -103,36 +91,82 @@
 			<div id="preview" ng-show="ctrl.statusPreview">	
 				<div>
 					<div style="border-bottom:0.3em dashed #f5f5f5;margin:1em"></div> 
-					<div style="width:60em;margin:0 auto">
+					<div style="width:64em;margin:0 auto">
 						<div>
-							<div style="float:left;width:30em;padding:0.4em;background-color:#FFD700;color:#ffffff;width:100px;font-weight:bold;font-size:1.4em;text-align:center">Preview</div>
-							
-							<div style="width:300px;float:right;text-align:right">
-								<button type="button" ng-click="ctrl.btnEdit()" ng-show="ctrl.visibleEdit">Editar</button>
-								<button type="button" ng-click="ctrl.btnConfirm()" ng-show="ctrl.visibleConfirm">Confirmar</button>
-								<button type="button" ng-click="ctrl.btnCancel()" ng-show="ctrl.visibleCancel">Cancelar</button>
+							<div id="blockOne" style="width:650px;float:left">
+								<div id="fonts">
+									<div style="width:50px;float:left">Fonte:</div>
+									<div style="width:600px;float:left">
+										<div ng-repeat="font in ctrl.fonts track by $index" style="font-family:{{font.font}};margin:0.2em;float:left">
+											<div ng-click="ctrl.changeFont(font.font)" style="font-family:{{font.font}};font-size:1em;text-align:center;padding:1em;border:0px;background-color:#ffffff" >
+												<div style="font-weight: bold;color:#000000">{{font.font}}</div>
+												<div style="color: blue">Type</div>
+												<div class="clearfix"></div>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+								<div id="backgrounds">
+									<div style="width:50px;float:left">Cor:</div>
+									<div style="width:600px;float:left">
+										<div ng-repeat="background in ctrl.backgrounds">
+											<div ng-click="ctrl.changeBackground(background.filename, background.colorTitle, background.colorBody)" style="height:90px;background-repeat:no-repeat;background-image:url(/praiser/uploads/admin/{{background.filename}});background-size:160px 90px;margin:0.2em;float:left;text-align:center;padding:0.6em;width:160px;border:1px solid #000000;">
+												<div style="width:50%;float:left;margin-top:20px">
+													<div style="margin:0 auto;border-radius:100%;background-color:{{background.colorTitle}};width:30px;height:30px"></div>
+												</div>
+												<div style="width:50%;float:left;margin-top:20px">
+													<div style="margin:0 auto;border-radius:100%;background-color:{{background.colorBody}};width:30px;height:30px"></div>
+												</div>
+											</div>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+								<div class="clearfix"></div>
 							</div>
+							<div id="blockTwo" style="width:200px;float:left">
+							
+								<div>Formato</div>
+							
+								<div style="text-align:center;font-weight:bold;width:100px;height:75px;background-color:#ffffff;margin:0 auto;font-size:2em;color:gray;padding:0.6em" ng-click="ctrl.selectRatio(1333,1000)">4:3</div>
+			 				
+			 					<div style="text-align:center;font-weight:bold;width:133px;height:75px;background-color:#ffffff;margin:1em auto;font-size:2em;color:gray;padding:0.6em" ng-click="ctrl.selectRatio(1777,1000)">16:9</div>
+			 			
+							
+								<div class="clearfix"></div>
+							</div>
+						
+						
+					
 							<div style="clear:both"></div>
 						</div>
-							<div style="width:100%">
-								<div style="float:left;width:{{(ctrl.slideWidth / 8) + 20}}px;padding:10px;border:1px solid red">
-									<div ng-repeat="phase in ctrl.phases track by $index">
-							 			<div ng-click="ctrl.selectSlide($index)" class="slide" style="line-height:2px;font-size:{{ctrl.slideFontSize / 8}}em;background-size:{{ctrl.slideWidth / 8}}px {{ctrl.slideHeight / 8}}px;width:{{ctrl.slideWidth / 8}}px;height:{{ctrl.slideHeight / 8}}px;color:{{ctrl.slideColorBody}};background-image:url(/praiser/uploads/admin/{{ctrl.slideBackground}});font-family:{{ctrl.slideFont}}">
-							 				<div class="contentSlide" ng-bind-html="phase"></div>
-						 					<div class="clearfix"></div>
-						 				</div>
-							 		</div>
-							 		<div class="clearfix"></div>
-							 	</div>
-							 	<div class="slideStage" style="float:left;width:500px">
-							 		<div class="slide" style="font-size:{{ctrl.slideFontSize / 2}}em;background-size:{{ctrl.slideWidth / 2}}px {{ctrl.slideHeight / 2}}px;width:{{ctrl.slideWidth / 2}}px;height:{{ctrl.slideHeight / 2}}px;color:{{ctrl.slideColorBody}};background-image:url(/praiser/uploads/admin/{{ctrl.slideBackground}});font-family:{{ctrl.slideFont}}">
-							 			<div data-editable data-name="slide" ng-bind-html="ctrl.phases[ctrl.slideEditIndex]" id="slideStageContent"></div>
-						 			</div>
-							 		<div class="clearfix"></div>
-							 	</div>
-							 								 	
-							 	
-							 </div>	
+						<div style="width:100%">
+							<div style="position:relative;overflow-y:scroll;height:534px;float:left;width:{{(ctrl.slideWidth / 8) + 40}}px;padding:10px;border:1px solid red">
+								<button type="button" ng-click="ctrl.newSlide()">Adicionar Slide</button>
+								
+								<div ng-repeat="phase in ctrl.phases track by $index">
+						 			<div ng-click="ctrl.selectSlide($index)" class="slide" style="line-height:2px;font-size:{{ctrl.slideFontSize / 8}}em;background-size:{{ctrl.slideWidth / 8}}px {{ctrl.slideHeight / 8}}px;width:{{ctrl.slideWidth / 8}}px;height:{{ctrl.slideHeight / 8}}px;color:{{ctrl.slideColorBody}};background-image:url(/praiser/uploads/admin/{{ctrl.slideBackground}});font-family:{{ctrl.slideFont}}">
+						 				<div class="contentSlide" ng-bind-html="phase"></div>
+					 					<div class="clearfix"></div>
+					 				</div>
+						 		</div>
+						 		<div class="clearfix"></div>
+						 	</div>
+						 	<div style="height:534px;float:left;width:{{(ctrl.slideWidth / 2) + 20}}px;padding:10px;border:1px solid red">
+						 		<div style="text-align:right;position:relative;z-index:2">
+						 			<button type="button" ng-click="ctrl.btnEdit()" ng-show="ctrl.visibleEdit">Editar</button>
+									<button type="button" ng-click="ctrl.btnConfirm()" ng-show="ctrl.visibleConfirm">Confirmar</button>
+								</div>
+								
+							 	<div class="slideStage slide" style="font-size:{{ctrl.slideFontSize / 2}}em;background-size:{{ctrl.slideWidth / 2}}px {{ctrl.slideHeight / 2}}px;width:{{ctrl.slideWidth / 2}}px;height:{{ctrl.slideHeight / 2}}px;color:{{ctrl.slideColorBody}};background-image:url(/praiser/uploads/admin/{{ctrl.slideBackground}});font-family:{{ctrl.slideFont}}">
+							 		<div ng-bind-html="ctrl.phases[ctrl.slideEditIndex]" id="slideStageContent"></div>
+						 		</div>
+					 		</div>
+						 	<div class="clearfix"></div>
+						 </div>	
 						
 						
 						
@@ -255,25 +289,25 @@
 // });
 
 
-(function() {
+// (function() {
 	 
-	  window.onload = function() {
+// 	  window.onload = function() {
 	   
-	    editor = ContentTools.EditorApp.get();
-	    editor.init('[data-editable]', 'data-name');
+// 	    editor = ContentTools.EditorApp.get();
+// 	    editor.init('[data-editable]', 'data-name');
 	    
-	    $(".ct-widget").css("display","none");
-	  };
+// 	    $(".ct-widget").css("display","none");
+// 	  };
 
-	}).call(this);
+// 	}).call(this);
 
 
 
 </script>
 
-<link rel="stylesheet" type="text/css" href="<c:url value='/static/css/content-tools.min.css' />">
+<%-- <link rel="stylesheet" type="text/css" href="<c:url value='/static/css/content-tools.min.css' />"> --%>
 
-<script src="<c:url value='/static/js/content-tools.min.js' />"></script>
+<%-- <script src="<c:url value='/static/js/content-tools.min.js' />"></script> --%>
 
 <script src="<c:url value='/static/app/service/background_service.js' />"></script>
 <script src="<c:url value='/static/app/service/font_service.js' />"></script>
@@ -281,3 +315,4 @@
 <script src="<c:url value='/static/app/controller/slide_controller.js' />"></script>
 
 
+<div id="mascara"></div>
