@@ -18,10 +18,24 @@ div::-webkit-scrollbar-thumb {
 
 
 .slideStage {
-	position:relative;
 	z-index:2;
 	background-color:#ffffff;
-	}
+	margin:0.2em auto;
+	border:0.1em solid #000000;
+	text-align:center;
+	background-repeat:no-repeat;
+	font-weight:bold;
+}
+
+.slideStage .alignCenterStage{
+	position:relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+	
 .interruptor { 
 	position:relative; 
 	z-index:2;
@@ -54,37 +68,53 @@ a.interruptor {
 a.apaga-acende {
 	background:#ccc;
 	color:#333;
-	}
-
-
-
-
-
-.slide1{
-	margin:0.2em;
-	border:0.1em solid #000000;
-	text-align:center;
-	background-repeat:no-repeat;
-	font-weight:bold;
-	overflow-y: hidden;
 }
 
-.slide{
-	margin:0.2em;
-	border:0.1em solid #000000;
-	text-align:center;
-	background-repeat:no-repeat;
-	float:left;
-	font-weight:bold;
-	overflow-y: hidden;
-}
 
-.slide div{
-	position: relative;
+.slideContent{
+	position:relative;
 	top: 50%;
 	-webkit-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
+}
+
+.slideDelete{
+	position:absolute;
+	bottom:0.1em;
+	right:0.1em;
+	width:30px;
+	height:30px;
+	background-image:url(../img/delete.png);
+	background-position:center;
+  	background-repeat:no-repeat;
+  	background-size:20px 20px;
+  	border-radius:100%;
+  	box-shadow:0.1em 0.1em 1em #000000;
+}
+
+.slideEdit {
+  	opacity: 0;
+  	position:absolute;
+	background-image: url(../img/icon.png);
+	background-position: center;
+  	background-repeat:no-repeat;
+  	background-size:100px 100px;
+}
+
+.slideNew {
+	background-image: url(../img/new.png);
+	background-position: center;
+  	background-repeat:no-repeat;
+  	background-size:100px 100px;
+}
+
+.slide{
+	margin:0.2em auto;
+	border:0.1em solid #000000;
+	text-align:center;
+	background-repeat:no-repeat;
+	font-weight:bold;
 }
 
 .slideSave{
@@ -285,3 +315,98 @@ html, body {
 }
 
 /*######################### END - BOOTSTRAP #################################*/
+
+
+.btn-ratio{
+	text-align:center;
+	font-weight:bold;
+	height:75px;
+	background-color:#ffffff;
+	margin:0 auto;
+	font-size:2em;
+	color:gray;
+	padding:0.6em;
+}
+
+.btn-background{
+	height:72px;
+	background-repeat:no-repeat;
+	background-size:100px 72px;
+	margin:0.2em;
+	float:left;
+	text-align:center;
+	padding:0.6em;
+	width:120px;
+	border:1px solid #000000;
+}
+
+.btn-background .font-color{
+	margin:0 auto;
+	border-radius:100%;
+	width:50%;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+	width:25px;
+	height:25px;
+	position:relative;
+}
+
+.btn-background .left{
+	float:left;
+	left:1em;
+}
+
+.btn-background .right{
+	float:right;
+	right:1em;
+}
+
+.content-personalise{
+	background-color: #fafafa;
+	padding:3em;
+	border-bottom:0.3em dashed #ffffff;
+}
+
+.content-preview{
+	padding:3em;
+}
+
+
+.btn-font{
+	height:72px;
+	font-size:1.1em;
+	text-align:center;
+	padding:1em;
+	border:0px;
+	background-color:#ffffff;
+	margin:0.2em;
+	float:left;
+	font-weight: bold;
+	color:#000000;
+	
+}
+.btn-font .type{
+	color:#00b0f5;
+	font-weight:normal;
+}
+
+
+.btn-edit{
+	font-size:1em;
+	background-color:#00ffed;
+	padding:0.6em;
+	border:0px;
+	font-weight:bold;
+	color:#ffffff
+}
+
+.btn-add-slide{
+	font-size:1em;
+	background-color:#00b0f5;
+	padding:0.6em;
+	border:0px;
+	font-weight:bold;
+	color:#ffffff
+}

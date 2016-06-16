@@ -45,6 +45,16 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 	self.slideWidth = '1333';//px
 	self.slideHeight = '1000';//px
 	
+	
+	self.editMouseOver = function(slideEdit){
+		$('#'+slideEdit).css("opacity",0.5);
+	}
+	
+	self.editMouseLeave = function(slideEdit){
+		$('#'+slideEdit).css("opacity",0);
+	}
+	
+	
 	self.selectRatio = function(width, height){
 		self.slideWidth = width;
 		self.slideHeight = height;
@@ -121,19 +131,26 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 	self.listFonts();
 	self.listBackgrounds();
 	
-	
 	self.selectSlide = function(index){
-		console.log(index);
 		self.slideEditIndex = index;
+		$('#mySlide').modal();
 	}
+	
+	self.stageChange = function(){
+		var html = $(".slideStage div").html().replace(/<div>/gi,'<br>').replace(/<\/div>/gi,'');
+		$(".slideStage div").html(html);
 		
+	}
 	
 	$('#mascara').css('height', $(document).height()).hide();
 	self.btnEdit = function(){
 		
 //		$('.ct-ignition__button--edit').click()
 		
-		$(".slideStage div").attr('contenteditable','true');
+		$("#slideStage div").attr('contenteditable','true');
+		$("#slideStage div").focus();
+		$("#slideStage").removeClass("alignCenterStage");
+		
 		
 		$('#mascara').toggle();
 		if ($('#mascara').is(':hidden')) {
@@ -181,6 +198,10 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 	
 	self.newSlide = function(){
 		self.phases.push("");
+	}
+	
+	self.deleteSlide = function(index){
+		self.phases.splice(index, 1)
 	}
 	
 	self.upload = function(){		
