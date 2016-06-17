@@ -1,9 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div>
-	<div style="width:33%;float:left;background-color:#00fe81;color:#ffffff;font-weight:bold;text-align:center;font-size:1em">Passo 1: escolha a música</div>
-	<div style="width:34%;float:left;background-color:#fd5dff;color:#ffffff;font-weight:bold;text-align:center;font-size:1em">Passo 2: Personalizar</div>
-	<div style="width:33%;float:left;background-color:#00ffed;color:#ffffff;font-weight:bold;text-align:center;font-size:1em">Passo 3: Download!</div>
+	<div style="width:40%;font-family:ProximaNova;float:left;background-color:#00fe81;color:#ffffff;font-weight:bold;text-align:center;font-size:1em">Passo 1: escolha a música</div>
+	<div style="width:60%;font-family:ProximaNova;float:left;background-color:#fd5dff;color:#ffffff;font-weight:bold;text-align:center;font-size:1em">Passo 2: Personalizar</div>
 </div>
 
 <div style="background-color: #ffffff">
@@ -25,28 +24,38 @@
 	   				</div>
 					<div style="clear:both"></div>
 					
-					<button type="button" ng-click="ctrl.upload()" style="margin-top:0.2em;float:right;padding:0.4em;border:0px;background-color:#00ffed;color:#ffffff;font-size:1.2em;font-weight:bold">Fazer upload da letra</button>
-					<div style="clear:both"></div>
+					<button type="button" ng-click="ctrl.upload()" style="margin-top:0.2em;float:right;padding:0.4em;border:0px;background-color:#00ffed;color:#ffffff;font-size:1.2em;font-weight:bold">Buscar letra</button>
+					<div class="clearfix"></div>
 					
 				</div>
 			</div>
 			
 			<div id="preview" ng-show="ctrl.statusPreview">						
 					<div>
-						<div class="content-personalise">
-							<div id="fonts" style="width:33%;float:left;padding:1em">
+						<div class="titlePersonalise">
 								<div style="">Fonte:</div>
-								<div>
-									<div ng-repeat="font in ctrl.fonts track by $index" style="font-family:{{font.font}}" class="btn-font" ng-click="ctrl.changeFont(font.font)">
-										<div>{{font.font}}</div>
-										<div class="type">Type</div>
+						</div>
+						<div class="titlePersonalise">
+								<div style="">Cor:</div>
+						</div>
+						<div class="titlePersonalise">
+								<div style="">Formato:</div>
+						</div>
+						<div class="clearfix"></div>
+						<div class="content-personalise">
+							<div id="fonts" style="width:33%;float:left;padding:1em;height:16em;border-right:0.3em solid #ffffff">
+								<div class="mlOverflow" style="height:200px;overflow-y:hidden;position: absolute;width: 28%;background-color: #fafafa" data-mlOverflow_more="Expand" data-mlOverflow_less="Contract">
+									<div class="mlOverflow_text">
+										<div ng-repeat="font in ctrl.fonts track by $index" style="font-family:{{font.font}}" class="btn-font" ng-click="ctrl.changeFont(font.font)">
+											<div>{{font.font}}</div>
+											<div class="type">Type</div>
+										</div>
+										<div class="clearfix"></div>
 									</div>
 									<div class="clearfix"></div>
 								</div>
-								<div class="clearfix"></div>
 							</div>
 							<div id="backgrounds" style="width:33%;float:left;padding:1em">
-								<div>Cor:</div>
 								<div>
 									<div ng-repeat="background in ctrl.backgrounds" style="background-image:url(/praiser/uploads/admin/{{background.filename}})" class="btn-background" ng-click="ctrl.changeBackground(background.filename, background.colorTitle, background.colorBody)">											
 										<div class="font-color left" style="background-color:{{background.colorTitle}}"></div>
@@ -57,10 +66,9 @@
 								</div>
 							</div>
 							<div id="backgrounds" style="width:33%;float:left;padding:1em">
-								<div>Formato</div>
 								<div>
-									<div class="btn-ratio" style="width:100px" ng-click="ctrl.selectRatio(1333,1000)">4:3</div>
-			 						<div class="btn-ratio" style="width:133px;margin:1em auto" ng-click="ctrl.selectRatio(1777,1000)">16:9</div>
+									<div class="btn-ratio {{ctrl.ratio == '4:3' ? 'btn-ratio-border' : ''}}" style="width:100px" ng-click="ctrl.selectRatio('4:3')">4:3</div>
+			 						<div class="btn-ratio {{ctrl.ratio == '16:9' ? 'btn-ratio-border' : ''}}" style="width:133px;margin:1em auto" ng-click="ctrl.selectRatio('16:9')">16:9</div>
 			 						<div class="clearfix"></div>
 			 					</div>
 							</div>
@@ -68,8 +76,12 @@
 						</div>
 						
 						<div class="content-preview">
+						<div>width:{{ctrl.slideWidth}}px;</div>
+						<div>height:{{ctrl.slideHeight}}px</div>
+						<div>width:{{ctrl.slideWidth / 7}}px;</div>
+						<div>height:{{ctrl.slideHeight / 7}}px</div>
 							<div ng-repeat="phase in ctrl.phases track by $index" style="position:relative;float:left;width:{{ctrl.slideWidth / 7}}px;height:{{ctrl.slideHeight / 7}}px">
-					 			<div title="Editar slide!" ng-mouseleave="ctrl.editMouseLeave('slideEdit'+$index)" ng-mouseover="ctrl.editMouseOver('slideEdit'+$index)" ng-click="ctrl.selectSlide($index)" class="slide" style="position:relative;float:left;line-height:2px;font-size:{{ctrl.slideFontSize / 7}}em;background-size:{{ctrl.slideWidth / 7}}px {{ctrl.slideHeight / 7}}px;width:{{ctrl.slideWidth / 7}}px;height:{{ctrl.slideHeight / 7}}px;color:{{ctrl.slideColorBody}};background-image:url(/praiser/uploads/admin/{{ctrl.slideBackground}});font-family:{{ctrl.slideFont}}">
+					 			<div title="Editar slide!" ng-mouseleave="ctrl.editMouseLeave('slideEdit'+$index)" ng-mouseover="ctrl.editMouseOver('slideEdit'+$index)" ng-click="ctrl.selectSlide($index)" class="slide" style="position:relative;float:left;font-size:{{ctrl.slideFontSize / 7}}em;background-size:{{ctrl.slideWidth / 7}}px {{ctrl.slideHeight / 7}}px;width:{{ctrl.slideWidth / 7}}px;height:{{ctrl.slideHeight / 7}}px;color:{{ctrl.slideColorBody}};background-image:url(/praiser/uploads/admin/{{ctrl.slideBackground}});font-family:{{ctrl.slideFont}}">
 					 				<div title="Editar" class="slideEdit" id="slideEdit{{$index}}" style="width:{{ctrl.slideWidth / 7}}px;height:{{ctrl.slideHeight / 7}}px"></div>
 					 				<div id="slideContent{{$index}}" class="slideContent" ng-bind-html="phase"></div>
 				 					<div class="clearfix"></div>
@@ -140,7 +152,7 @@
 						<button type="button" ng-click="ctrl.btnConfirm()" ng-show="ctrl.visibleConfirm">Confirmar</button>
 					</div>
 					
-				 	<div id="slideStage" class="slideStage" style="font-size:{{ctrl.slideFontSize / 2.8}}em;background-size:{{ctrl.slideWidth / 2.8}}px {{ctrl.slideHeight / 2.8}}px;width:{{ctrl.slideWidth / 2.8}}px;height:{{ctrl.slideHeight / 2.8}}px;color:{{ctrl.slideColorBody}};background-image:url(/praiser/uploads/admin/{{ctrl.slideBackground}});font-family:{{ctrl.slideFont}}">
+				 	<div id="slideStage" class="slideStage" style="font-size:{{ctrl.slideFontSize / 3}}em;background-size:{{ctrl.slideWidth / 3}}px {{ctrl.slideHeight / 3}}px;width:{{ctrl.slideWidth / 3}}px;height:{{ctrl.slideHeight / 3}}px;color:{{ctrl.slideColorBody}};background-image:url(/praiser/uploads/admin/{{ctrl.slideBackground}});font-family:{{ctrl.slideFont}}">
 				 		<div ng-bind-html="ctrl.phases[ctrl.slideEditIndex]" id="slideStageContent" class="alignCenterStage"></div>
 			 		</div>
 		 		</div>
@@ -255,10 +267,15 @@
 
 <%-- <script src="<c:url value='/static/js/content-tools.min.js' />"></script> --%>
 
+<script src="<c:url value='/static/js/mlOverflow.js' />"></script>
+
+
 <script src="<c:url value='/static/app/service/background_service.js' />"></script>
 <script src="<c:url value='/static/app/service/font_service.js' />"></script>
 <script src="<c:url value='/static/app/service/slide_service.js' />"></script>
 <script src="<c:url value='/static/app/controller/slide_controller.js' />"></script>
+
+
 
 
 <div id="mascara"></div>

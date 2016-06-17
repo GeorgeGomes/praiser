@@ -10,7 +10,7 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 	
 	var apiMusic = "https://api.vagalume.com.br/search.artmus?limit=8&q=";
 	
-	self.ratio={};
+	self.ratio="4:3";
 	
 	
 	self.visibleEdit = true;
@@ -55,9 +55,16 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 	}
 	
 	
-	self.selectRatio = function(width, height){
-		self.slideWidth = width;
-		self.slideHeight = height;
+	self.selectRatio = function(ratio){
+		if(ratio=="4:3"){
+			self.slideWidth = 1333;
+			self.slideHeight = 1000;
+			self.ratio = ratio;
+		}else if(ratio=="16:9"){
+			self.slideWidth = 1777;
+			self.slideHeight = 1000;
+			self.ratio = ratio;
+		}
 	}
 	
 	self.selectMusic = function(lyric){
@@ -208,6 +215,7 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 		
 		var obj = {"music":"Nosso Deus\n\nNosso Deus é soberano\nEle reina antes a fundação do mundo\n\nA terra era sem forma e vazia\nE o espirito do nosso Deus\nSe movia sobre a face das águas\n\nFoi Ele quem criou o céu dos céus\nFez separação das águas\nE a terra seca\n\n teste teste steste teste teste teste teste\n sdsdad asd f dajfhaksd fkasf kasd f\nadh aksdhkahdkahsdk ah kdhakdakshd kahd\nasdhakdhakshdkahdkhaskdh\n"};
 		var txt = JSON.stringify(obj.music);
+		txt = txt.replace("\"","");
 		
 		self.statusUpload = false;
 		self.statusPreview = true;
@@ -219,11 +227,12 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 			var txt = '';
 			var arr = self.phases[x].split("\\n");
 			for(var i=0; i < arr.length; i++){
-				txt += "<p>" + arr[i] + "</p>";
+				txt += "<div>" + arr[i] + "</div>";
 			}
-			self.phases[x] = "<p>"+txt+"</p>";
+			self.phases[x] = "<div>"+txt+"</div>";
 		}
 		
+		mlOverflow();
 		
 //		SlideService.searchLyric(self.selectLyricId)
 //		.then(
@@ -358,5 +367,7 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 					}
 			);
 	};
+	
+	
 	
 }]);
