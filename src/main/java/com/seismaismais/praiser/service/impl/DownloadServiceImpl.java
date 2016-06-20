@@ -12,6 +12,8 @@ import org.apache.poi.xslf.usermodel.XMLSlideShow;
 import org.apache.poi.xslf.usermodel.XSLFPictureData;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,8 +24,12 @@ import com.seismaismais.praiser.util.FileUtil;
 
 @Service("downloadService")
 @Transactional
+@PropertySource(value = { "classpath:app.properties" })
 public class DownloadServiceImpl implements DownloadService {
 
+	 @Autowired
+	 private Environment environment;
+	
 	@Autowired
 	private SlideService slideService;
 	
@@ -55,7 +61,7 @@ public class DownloadServiceImpl implements DownloadService {
 		slide.setFilename(fileName);
 		slideService.update(slide);
 		
-		FileOutputStream out = new FileOutputStream("/praiser/" + fileName + ".pptx");
+		FileOutputStream out = new FileOutputStream(environment.getRequiredProperty("app.archive.upload.user") + fileName + ".pptx");
 		ppt.write(out);
 		out.close();
 		ppt.close();
@@ -70,7 +76,7 @@ public class DownloadServiceImpl implements DownloadService {
 			for (int i = 0; i < slidesBase64.length; i++) {
 				byte[] image;
 				image = FileUtil.convertBase64ToByte(FileUtil.clearStringBase64(slidesBase64[i]));
-				FileUtil.convertBase64ToImage(FileUtil.clearStringBase64(slidesBase64[i]), "/praiser/"+ FileUtil.generateUniqueFileName() + ".jpg");
+				FileUtil.convertBase64ToImage(FileUtil.clearStringBase64(slidesBase64[i]), environment.getRequiredProperty("app.archive.upload.user") + FileUtil.generateUniqueFileName() + ".jpg");
 				imagesList.add(image);
 			}
 		} catch (IOException e) {

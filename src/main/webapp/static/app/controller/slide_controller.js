@@ -1,6 +1,6 @@
 'use strict';
 
-App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'FontService', 'BackgroundService', function($scope, $log, $sce, SlideService, FontService, BackgroundService){
+App.controller('SlideController', ['$scope', '$log', '$sce', '$mdDialog', 'SlideService', 'FontService', 'BackgroundService', function($scope, $log, $sce, $mdDialog, SlideService, FontService, BackgroundService){
 	self = this;
 	self.slide={};
 	self.slides=[];
@@ -10,22 +10,16 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 	
 	var apiMusic = "https://api.vagalume.com.br/search.artmus?limit=8&q=";
 	
-	self.ratio="4:3";
 	
 	
 	self.visibleEdit = true;
 	self.visibleConfirm = false;
 	self.visibleCancel = false;
-	
-	
-	
+
 	self.phases=[];
 	
 	self.statusUpload = true;
-	self.statusPreview = false;
 	self.statusPersonalize = false;
-	self.statusDone = false;
-	self.rawHtml = "";
 	
 	self.downloadStep = 1;
 	
@@ -35,6 +29,7 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 	
 	self.slideEditIndex = 0;
 	
+	self.ratio="4:3";
 	self.slideFontSize = 4;//em
 	self.slideFont = 'arial';
 	self.slideBackground = '';
@@ -54,6 +49,10 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 		$('#'+slideEdit).css("opacity",0);
 	}
 	
+	self.back = function(){
+		self.statusUpload = true;
+		self.statusPersonalize = false;
+	}
 	
 	self.selectRatio = function(ratio){
 		if(ratio=="4:3"){
@@ -99,7 +98,7 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 			self.lyrics = [];
 		}
 	}
-		
+	
 	self.changeFont = function(font){
 		self.slideFont = font;
 		console.log(font);
@@ -150,65 +149,28 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 	}
 	
 	$('#mascara').css('height', $(document).height()).hide();
-	self.btnEdit = function(){
-		
-//		$('.ct-ignition__button--edit').click()
-		
-		$("#slideStage div").attr('contenteditable','true');
-		$("#slideStage div").focus();
-		$("#slideStage").removeClass("alignCenterStage");
-		
-		
-		$('#mascara').toggle();
-		if ($('#mascara').is(':hidden')) {
-			$(this).removeClass('apaga-acende');
-		} else {
-			$(this).addClass('apaga-acende');
-		}
-		
-		
-		
-		
-		self.visibleEdit = false;
-		self.visibleConfirm = true;
-		self.visibleCancel = true;
-	}
-	self.btnConfirm = function(){
-//		$('.ct-ignition__button--confirm').click()
-		
-		
-		
-		$(".slideStage div").attr('contenteditable','false');
-		
-		$('#mascara').toggle();
-		if ($('#mascara').is(':hidden')) {
-			$(this).removeClass('apaga-acende');
-		} else {
-			$(this).addClass('apaga-acende');
-		}
-		
-		
-		
-		self.phases[self.slideEditIndex] = $("#slideStageContent").html();
-		self.visibleEdit = true;
-		self.visibleConfirm = false;
-		self.visibleCancel = false;
-		
-	}
-	self.btnCancel = function(){
-		$('.ct-ignition__button--cancel').click();
-		self.visibleEdit = true;
-		self.visibleConfirm = false;
-		self.visibleCancel = false;
-	}
-	
 	
 	self.newSlide = function(){
 		self.phases.push("");
 	}
 	
-	self.deleteSlide = function(index){
-		self.phases.splice(index, 1)
+	self.deleteSlide = function(ev, index){
+
+		var confirm = $mdDialog.confirm()
+						.title('Confirmação')
+						.textContent('Gostaria de excluir este slide?')
+						.ariaLabel('Lucky day')
+						.targetEvent(ev)
+						.ok('Sim')
+						.cancel('Não');
+		$mdDialog.show(confirm).then(function() {
+			console.log("sim");
+			self.phases.splice(index, 1);
+		}, function() {
+			console.log("não");
+		});
+		 
+		
 	}
 	
 	self.upload = function(){		
@@ -218,7 +180,6 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 		txt = txt.replace("\"","");
 		
 		self.statusUpload = false;
-		self.statusPreview = true;
 		self.statusPersonalize = true;
 		
 		self.phases = txt.split("\\n\\n");
@@ -282,7 +243,6 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 		var music = $("#musicLetter").val();
 		self.phases = music.split("<hr>");
 		self.statusUpload = false;
-		self.statusPreview = false;
 		self.statusPersonalize = true;
 		
 //		$('.slide').overflowing('.contentSlide', function(overflowed) { 
@@ -293,9 +253,7 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 	
 	self.done = function(){
 		self.statusUpload = false;
-		self.statusPreview = false;
 		self.statusPersonalize = false;
-		self.statusDone = true;
 	};
 	
 	self.download = function(){
@@ -303,11 +261,21 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 		$('#myModal').modal();
 	}
 	
+	self.resetSlide = function(){
+		location = '/praiser/slide';
+	}
+	
+	self.home = function(){
+		location = '/praiser/';
+	}
+	
 	self.saveSlide = function(){
 		
 		console.log("savedownloads")	
 		var htmlSlides = $("#canvasSlide").html();
 		console.log(htmlSlides);
+		
+		self.downloadStep = 2;
 		
 		self.slide.music="musica";
 		self.slide.artist="artista";
@@ -317,24 +285,8 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 		self.slide.height = self.slideHeight;
 		
 		var tot = 1;
-		$("#canvasSlide").css("display","block");
-		$(".slideSave").each(function(){
-			
-//			html2canvas($(this), {onclone: function(document) {
-//				console.log(document);
-//				$(document).css("display","block");
-//            }}).then(function(canvas) {
-//                var myImage = canvas.toDataURL("image/jpeg");
-//                //window.open(myImage)
-//                self.slide.slidesImages.push(myImage)
-//                if(tot==$(".slideSave").length){
-//                	self.create();
-//                }
-//                tot++
-//            }).catch(function(error) {
-//                console.log("eror")
-//            });
-			
+		$("#canvasSlide").show();
+		$(".slideSave").each(function(){			
 			
 			html2canvas($(this), {
 	            onrendered: function(canvas) {
@@ -342,7 +294,7 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 	                //window.open(myImage)
 	                self.slide.slidesImages.push(myImage)
 	                if(tot==$(".slideSave").length){
-	                	$("#canvasSlide").css("display","none");
+	                	$("#canvasSlide").hide();
 	                	self.create();
 	                }
 	                tot++
@@ -356,7 +308,7 @@ App.controller('SlideController', ['$scope', '$log', '$sce', 'SlideService', 'Fo
 		SlideService.create(self.slide)
 			.then(
 					function(response){
-						self.downloadStep = 2;
+						self.downloadStep = 3;
 						console.log(response);
 						console.log(response.data);
 						console.log(response.data.filename)

@@ -1,11 +1,12 @@
 package com.seismaismais.praiser.controller;
 
-import java.io.File;
 import java.io.FileInputStream;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,10 +20,14 @@ import com.seismaismais.praiser.model.Slide;
 import com.seismaismais.praiser.service.SlideService;
 
 @Controller
+@PropertySource(value = { "classpath:app.properties" })
 public class DownloadController {
 
 	Logger logger = Logger.getLogger(DownloadController.class);
 
+	@Autowired
+	private Environment environment;
+	
 	@Autowired
 	private SlideService slideService;
 	
@@ -36,7 +41,7 @@ public class DownloadController {
 	 throws Exception {
 	 Slide slide = slideService.findByFilename(filename);
 	
-	 FileInputStream pptFile = new FileInputStream("/praiser/" + slide.getFilename() + ".pptx");
+	 FileInputStream pptFile = new FileInputStream(environment.getRequiredProperty("app.archive.upload.user") + slide.getFilename() + ".pptx");
 	 
 	 byte[] output = IOUtils.toByteArray(pptFile);
 			 
