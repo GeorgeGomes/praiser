@@ -207,7 +207,7 @@ a.apaga-acende {
 }
 
 .slide{
-	margin:0.2em auto;
+	margin:0em auto;
 	border:0.1em solid #000000;
 	text-align:center;
 	background-repeat:no-repeat;
@@ -223,13 +223,6 @@ a.apaga-acende {
 	overflow-y: hidden;
 }
 
-.slideSave div{
-	position: relative;
-	top: 50%;
-	-webkit-transform: translateY(-50%);
-	-ms-transform: translateY(-50%);
-	transform: translateY(-50%);
-}
 
 
 .clearfix{
@@ -521,6 +514,16 @@ html, body {
 	height:50px;
 }
 
+.btn-cancel{
+	padding:0.4em;
+	border:0px;
+	background-color:#ffffff;
+	color:#d9d9d9;
+	font-size:1em;
+	font-weight:bold;
+	border:1px solid #d9d9d9;
+}
+
 
 .btn-font{
 	height:72px;
@@ -553,6 +556,15 @@ html, body {
 	color:#ffffff
 }
 
+.btn-save{
+	font-size:1em;
+	background-color:#00b0f5;
+	padding:0.6em;
+	border:0px;
+	font-weight:bold;
+	color:#ffffff
+}
+
 .btn-add-slide{
 	font-size:1em;
 	background-color:#00b0f5;
@@ -561,3 +573,36 @@ html, body {
 	font-weight:bold;
 	color:#ffffff
 }
+
+
+
+
+
+.menu-text{
+	float: left;
+	color: #ffffff !important;
+	width: 6em;
+	font-family:ProximaNovaBold;
+	font-size:1.2em;
+}
+
+.menu-doar{
+	border: 1px solid #ffffff;
+	text-align: center	
+}
+
+.menu-login{
+	padding: 0.2em 2em 0.2em 2em	
+}
+
+.menu-signup{
+	font-weight: bold;
+	float: left;
+	background-color: #00FFFF; 
+	border-radius: 0.6em; 
+	color: #000000 !important; 
+	padding: 0.2em 2em 0.2em 2em;
+	width: 8em !important;
+}
+
+

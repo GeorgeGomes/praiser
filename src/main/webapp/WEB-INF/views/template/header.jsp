@@ -7,11 +7,11 @@
 	</div>
 	
 		
-	<div ng-controller="UserController as ctrl" style="margin-left: 3em; float: right;; width: 18em; border-left: 2px solid #ffffff;">
+	<div ng-controller="UserController as ctrl" style="margin-left: 3em; float: right; width: 20em; border-left: 2px solid #ffffff;">
 		<sec:authorize access="isAnonymous()">
 			<div style="padding:0.6em">
-				<a style="float: left; color: #ffffff; width: 6em; padding: 0.2em 2em 0.2em 2em" href="login">Login</a>
-				<a style="font-weight: bold; float: left; background-color: #00FFFF; border-radius: 0.6em; color: #000000; padding: 0.2em 2em 0.2em 2em" href="signup">Sign Up</a>
+				<a href="login" class="menu-text menu-login">Login</a>
+				<a href="signup" class="menu-text menu-signup">Sign Up</a>
 				<div style="clear: both"></div>
 			</div>
 		</sec:authorize>
@@ -24,7 +24,7 @@
 					</div>
 					<div style="clear: both"></div>
 				</div>
-				<ul class="dropdown-menu" style="width:16em;margin-top:-0.12em" aria-labelledby="dropdownProfile">
+				<ul class="dropdown-menu" style="width:24em;margin-top:-0.12em" aria-labelledby="dropdownProfile">
 					<li style="border-bottom:0.1em solid #ffffff;padding:0.8em;">
 						<a href="dowloads" style="color:#ffffff;font-weight:bold;font-size:16px"><img src="static/img/download-from-cloud.png" alt="Downloads" style="width:25"/> Meus Downloads</a>
 					</li>
@@ -44,12 +44,12 @@
 	</div>
 
 
-	<div style="float: right; width: 18em; padding-top: 1em;">
-		<a style="float: left; color: #ffffff; width: 6em" href="#">O que é?</a>
-		<a style="float: left; color: #ffffff; width: 6em" href="explore">Explore</a>
-		<a href="#" style="color: #ffffff; float: left; border: 1px solid #ffffff; width: 6em; text-align: center">Doar</a>
-		<div style="clear: both"></div>
+	<div style="float: right; width: 22em; padding-top: 1em;">
+		<a href="#" class="menu-text" >O que é?</a>
+		<a href="explore" class="menu-text" >Explore</a>
+		<a href="#" class="menu-text menu-doar">Doar</a>
+		<div class="clearfix"></div>
 	</div>
 
-	<div style="clear: both"></div>
+	<div class="clearfix"></div>
 </div>

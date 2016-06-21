@@ -46,7 +46,7 @@
 						<div class="clearfix"></div>
 						<div class="content-personalise">
 							<div class="content-fonts">
-								<div class="mlOverflow" style="height:17em;overflow-y:hidden;position: absolute;width: 28%;background-color: #fafafa" data-mlOverflow_more="Expand" data-mlOverflow_less="Contract">
+								<div style="height:17em;overflow-y:hidden;position: absolute;width: 28%;background-color: #fafafa">
 									<div class="mlOverflow_text">
 										<div ng-repeat="font in ctrl.fonts track by $index" style="font-family:{{font.font}}" class="btn-font" ng-click="ctrl.changeFont(font.font)">
 											<div>{{font.font}}</div>
@@ -56,6 +56,7 @@
 									</div>
 									<div class="clearfix"></div>
 								</div>
+								<div class="clearfix"></div>
 							</div>
 							<div class="content-backgrounds">
 								<div>
@@ -78,7 +79,7 @@
 						</div>
 						
 						<div class="content-preview">
-							<div class="titlePersonalise">Preview:</div>
+							<div class="titlePersonalise" style="padding-top:0em !important;padding-left:0em !important">Preview:</div>
 							<div class="clearfix"></div>
 						
 							<div ng-repeat="phase in ctrl.phases track by $index" style="margin:0.2em;position:relative;float:left;width:{{ctrl.slideWidth / 7}}px;height:{{ctrl.slideHeight / 7}}px">
@@ -107,8 +108,8 @@
 		
 <div id="canvasSlide" style="position: absolute; opacity: 0.0;display:none">
 	<div ng-repeat="phase in ctrl.phases track by $index">
-		<div class="slideSave" data-index="{{$index}}" style="border:1px solid black;font-size:{{ctrl.slideFontSize}}em;background-size:{{ctrl.slideWidth}}px {{ctrl.slideHeight}}px;width:{{ctrl.slideWidth}}px;height:{{ctrl.slideHeight}}px;color:{{$index == 0 ? ctrl.slideColorTitle : ctrl.slideColorBody}};{{ctrl.slideBackground == '' ? 'background-color:#ffffff' : 'background-image:url(/praiser/uploads/admin/' + ctrl.slideBackground + ')'}};font-family:{{ctrl.slideFont}}">
-			<div ng-bind-html="phase"></div>
+		<div class="slideSave" style="border:1px solid black;font-size:{{ctrl.slideFontSize}}em;background-size:{{ctrl.slideWidth}}px {{ctrl.slideHeight}}px;width:{{ctrl.slideWidth}}px;height:{{ctrl.slideHeight}}px;color:{{$index == 0 ? ctrl.slideColorTitle : ctrl.slideColorBody}};{{ctrl.slideBackground == '' ? 'background-color:#ffffff' : 'background-image:url(/praiser/uploads/admin/' + ctrl.slideBackground + ')'}};font-family:{{ctrl.slideFont}}">
+			<div class="slideContent" ng-bind-html="phase"></div>
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -122,15 +123,19 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div>
-				<div style="height:520px;float:left;width:660px;padding:10px;border-top:1px solid #fafafa;border-right:1px solid #fafafa;border-bottom:1px solid #fafafa">
+				<div style="height:440px;float:left;width:660px;padding:10px;border-top:1px solid #fafafa;border-right:1px solid #fafafa;border-bottom:1px solid #fafafa;background-color:#ffffff">
 			 		<div style="text-align:right;position:relative;z-index:2">
-			 			<button type="button" ng-click="ctrl.btnEdit()" ng-show="ctrl.visibleEdit" class="btn-edit">Editar</button>
-						<button type="button" ng-click="ctrl.btnConfirm()" ng-show="ctrl.visibleConfirm">Confirmar</button>
+						<button type="button" ng-click="ctrl.btnSlideCancel()" class="btn-cancel">Fechar</button>
 					</div>
 					
 				 	<div id="slideStage" class="slideStage" style="font-size:{{ctrl.slideFontSize / 3}}em;background-size:{{ctrl.slideWidth / 3}}px {{ctrl.slideHeight / 3}}px;width:{{ctrl.slideWidth / 3}}px;height:{{ctrl.slideHeight / 3}}px;color:{{ctrl.slideColorBody}};background-image:url(/praiser/uploads/admin/{{ctrl.slideBackground}});font-family:{{ctrl.slideFont}}">
 				 		<div ng-bind-html="ctrl.phases[ctrl.slideEditIndex]" id="slideStageContent" class="alignCenterStage"></div>
 			 		</div>
+			 		
+					<div style="text-align:right;position:relative;z-index:2">			 		
+			 			<button type="button" ng-click="ctrl.btnSlideEdit()" ng-show="ctrl.visibleBtnSlideEdit" class="btn-edit">Editar</button>
+						<button type="button" ng-click="ctrl.btnSlideConfirm()" ng-show="ctrl.visibleBtnSlideConfirm" class="btn-save">Salvar</button>
+					</div>
 		 		</div>
 			
 			
@@ -138,22 +143,6 @@
 		</div>
 	</div>
 </div>
-		
-<script>
-
-// var editable = document.getElementById("editable");
-
-// $(".slideStage div").bind('input', function() { 
-// 	console.log("chamou");
-// 	console.log(html);
-// 	var html = $(".slideStage div").html().replace(/<div>/gi,'<br>').replace(/<\/div>/gi,'');
-// 	console.log(html);
-// 	$(".slideStage div").html(html);
-// })
-
-
-
-</script>
 		
 
 
@@ -175,8 +164,8 @@
 				     	</div>
 				     	<button type="button" style="border-radius:0.2em;border:0px;display:block;margin:0.6em auto;width:160px;background-color:#00b0f5;color:#ffffff;font-size:2em;font-weight:bold">Doar</button>
 				     	<div style="padding:0.6em">
-				     		<a href="#" data-dismiss="modal" aria-label="Close" style="text-align:left;">voltar</a>
-				     		<a href="#" ng-click="ctrl.saveSlide()" style="text-align:center;color:#084B8A;font-weight:bold">Hoje não, talvez na próxima...</a>
+				     		<a href="#" data-dismiss="modal" aria-label="Close" style="text-align:left;fon-size:1.2em;color:#7D7B7B;display:block;float:left">voltar</a>
+				     		<a href="#" ng-click="ctrl.saveSlide1()" style="text-align:center;color:#084B8A;font-weight:bold;display:block;width:300px;margin:0 auto">Hoje não, talvez na próxima...</a>
 				     	</div>
 			     	</div>
 				</div>
@@ -216,6 +205,26 @@
 </div>
 
 
+<script>
+$(".content-fonts").hover(function() {
+    var height = $(this).height();
+    var pad = height + 5;
+
+var height2 = $(this)[0].scrollHeight;
+
+if (height2 > 35)
+    {
+          $(this).animate({
+                 height: height2
+            }, 300);
+    }
+}, function() {
+    $(this).stop(true, false).animate({
+        height: 35
+    },150);
+});
+</script>
+
 
 <style ng-repeat="font in ctrl.fonts track by $index">
 	@font-face {
@@ -225,10 +234,7 @@
 </style>
 
 
-<script src="<c:url value='/static/app/service/background_service.js' />"></script>
-<script src="<c:url value='/static/app/service/font_service.js' />"></script>
-<script src="<c:url value='/static/app/service/slide_service.js' />"></script>
-<script src="<c:url value='/static/app/controller/slide_controller.js' />"></script>
-
-
-<div id="mascara"></div>
+<script src="<c:url value='/static/app/service/background_service.js' />" charset="utf-8"></script>
+<script src="<c:url value='/static/app/service/font_service.js' />" charset="utf-8"></script>
+<script src="<c:url value='/static/app/service/slide_service.js' />" charset="utf-8"></script>
+<script src="<c:url value='/static/app/controller/slide_controller.js' />" charset="utf-8"></script>

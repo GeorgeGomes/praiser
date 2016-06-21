@@ -10,11 +10,9 @@ App.controller('SlideController', ['$scope', '$log', '$sce', '$mdDialog', 'Slide
 	
 	var apiMusic = "https://api.vagalume.com.br/search.artmus?limit=8&q=";
 	
+	self.visibleBtnSlideEdit = true;
+	self.visibleBtnSlideConfirm = false;
 	
-	
-	self.visibleEdit = true;
-	self.visibleConfirm = false;
-	self.visibleCancel = false;
 
 	self.phases=[];
 	
@@ -40,6 +38,32 @@ App.controller('SlideController', ['$scope', '$log', '$sce', '$mdDialog', 'Slide
 	self.slideWidth = '1333';//px
 	self.slideHeight = '1000';//px
 	
+	
+	self.btnSlideEdit = function(){
+		$("#slideStage div").attr('contenteditable','true');
+		$("#slideStage div").focus();
+		$("#slideStage").removeClass("alignCenterStage");
+	
+		self.visibleBtnSlideEdit = false;
+		self.visibleBtnSlideConfirm = true;
+	}
+	
+	self.btnSlideConfirm = function(){
+		$(".slideStage div").attr('contenteditable','false');
+
+		self.phases[self.slideEditIndex] = $("#slideStageContent").html();
+		$('#mySlide').modal('hide');
+		
+		self.visibleBtnSlideEdit = true;
+		self.visibleBtnSlideConfirm = false;
+	}
+	
+	self.btnSlideCancel = function(){
+		$('#mySlide').modal('hide');
+		
+		self.visibleBtnSlideEdit = true;
+		self.visibleBtnSlideConfirm = false;
+	}
 	
 	self.editMouseOver = function(slideEdit){
 		$('#'+slideEdit).css("opacity",0.5);
@@ -177,7 +201,7 @@ App.controller('SlideController', ['$scope', '$log', '$sce', '$mdDialog', 'Slide
 		
 		var obj = {"music":"Nosso Deus\n\nNosso Deus é soberano\nEle reina antes a fundação do mundo\n\nA terra era sem forma e vazia\nE o espirito do nosso Deus\nSe movia sobre a face das águas\n\nFoi Ele quem criou o céu dos céus\nFez separação das águas\nE a terra seca\n\n teste teste steste teste teste teste teste\n sdsdad asd f dajfhaksd fkasf kasd f\nadh aksdhkahdkahsdk ah kdhakdakshd kahd\nasdhakdhakshdkahdkhaskdh\n"};
 		var txt = JSON.stringify(obj.music);
-		txt = txt.replace("\"","");
+		txt = txt.replace(/\"/g,"");
 		
 		self.statusUpload = false;
 		self.statusPersonalize = true;
@@ -302,6 +326,63 @@ App.controller('SlideController', ['$scope', '$log', '$sce', '$mdDialog', 'Slide
 	        });
 		})
 		
+	}
+	
+	self.saveSlide1 = function(){
+		
+		var htmlSlides = $("#canvasSlide").html();
+		
+		self.downloadStep = 2;
+		
+		self.slide.music="musica";
+		self.slide.artist="artista";
+		self.slide.slide = htmlSlides;
+		self.slide.slidesImages = [];
+		self.slide.width = self.slideWidth;
+		self.slide.height = self.slideHeight;
+		
+		var tot = 1;
+		$("#canvasSlide").show();
+		
+		
+//		$(".slideSave").each(function(){			
+//			
+//			html2canvas($(this), {
+//	            onrendered: function(canvas) {
+//	                var myImage = canvas.toDataURL("image/jpeg");
+//	                //window.open(myImage)
+//	                self.slide.slidesImages.push(myImage)
+//	                if(tot==$(".slideSave").length){
+//	                	$("#canvasSlide").hide();
+//	                	self.create();
+//	                }
+//	                tot++
+//	            }
+//	        });
+//		})
+		
+		self.createImageSlide(self.createImageSlide, 0);
+		
+	}
+	
+	self.createImageSlide = function(callback, index){
+		var obj = $(".slideSave:eq("+index+")"); 
+		
+		$(".slideSave:eq("+index+")").each(function(){	
+		html2canvas($(this), {
+				onrendered: function(canvas) {
+	        	   var myImage = canvas.toDataURL("image/jpeg");
+	               self.slide.slidesImages.push(myImage)
+	               
+	               if((index + 1) == $(".slideSave").length){
+	            	   	$("#canvasSlide").hide();
+	               		self.create();
+	               }else{
+	            	   callback(callback, index+1)
+	               }
+	           }
+		});
+		});
 	}
 	
 	self.create = function(){
