@@ -19,6 +19,8 @@ App.factory('UserService', ['$http', '$q', '$rootElement', '$location', '$log', 
 			
 		},
 		
+
+		
 		get: function(){
 			return $http.get(path + '/' + app + '/rest/auth/user/get')
 					.then(

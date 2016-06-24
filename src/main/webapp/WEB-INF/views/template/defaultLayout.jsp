@@ -34,10 +34,14 @@
 <script src="<c:url value='/static/js/angular/angular-touch.min.js' />" charset="utf-8"></script>
 <script src="<c:url value='/static/js/angular/angular-material.min.js' />" charset="utf-8"></script>
 <script src="<c:url value='/static/js/angular/angular-file-upload.min.js' />" charset="utf-8"></script>
+<script src="<c:url value='/static/js/angular/angular-validation-match.min.js' />" charset="utf-8"></script>
+
 
 <script src="<c:url value='/static/js/jquery-te-1.4.0.min.js' />" charset="utf-8"></script>
 
 <script src="<c:url value='/static/app/app.js' />" charset="utf-8"></script>
+
+<script src="<c:url value='/static/app/directive/uniqueEmail.js' />" charset="utf-8"></script>
 
 <!--[if gte IE 9]>
   <style type="text/css">

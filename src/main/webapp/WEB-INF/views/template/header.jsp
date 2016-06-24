@@ -16,29 +16,46 @@
 			</div>
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()">
-			<div class="dropdown" style="margin-left:0.2em;width:16em">
-				<div class="dropdown-toggle" id="dropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<img ng-src="{{ ctrl.user.imagemProfile != null && '/praiser/uploads/user/' + ctrl.user.imagemProfile || 'static/img/default-user.png' }}" style="margin:0px 0px 0px 3em;float:left;border-radius:100%;width:40px;height:40px;border:4px solid #ffffff" />
-					<div style="float:left;width:100px;margin-left:0.6em;padding-top:0.6em">
+			<div class="menu-dropdown">
+				<div class="menu-dropdown-user">
+					<div style="margin:0px 0px 0px 2em;float:left;width:3em">
+						<img ng-src="{{ ctrl.user.imagemProfile != null && '/praiser/uploads/user/' + ctrl.user.imagemProfile || 'static/img/default-user.png' }}" class="photo-circle" />
+					</div>
+					<div style="float:left;width:12em;margin-left:0.6em;padding-top:0.6em">
 						<span style="color:#ffffff;font-weight:bold;font-size:16px">{{ctrl.user.fullname}}</span>
 					</div>
 					<div style="clear: both"></div>
 				</div>
-				<ul class="dropdown-menu" style="width:24em;margin-top:-0.12em" aria-labelledby="dropdownProfile">
-					<li style="border-bottom:0.1em solid #ffffff;padding:0.8em;">
-						<a href="dowloads" style="color:#ffffff;font-weight:bold;font-size:16px"><img src="static/img/download-from-cloud.png" alt="Downloads" style="width:25"/> Meus Downloads</a>
-					</li>
-					<li style="border-bottom:0.1em solid #ffffff;padding:0.6em;">
-						<a href="/praiser/profile" style="color:#ffffff;font-weight:bold;font-size:16px"><img src="static/img/settings.png" alt="Configurações"  style="width:25"/> Configurações</a>
-					</li>
-					<li style="padding:0.8em;">
-						<a href="/praiser/logoff" style="color:#ffffff;font-weight:bold;font-size:16px"><img src="static/img/logout.png" alt="Sair"  style="width:25"/> Sair</a>
-					</li>
-				</ul>
-				
-				<div style="clear: both"></div>
+				<div class="menu-dropdown-list">
+					<div style="border-bottom:0.1em solid #ffffff">
+						<a href="dowloads">
+							<img src="static/img/download-from-cloud.png" alt="Downloads" /> Meus Slides
+						</a>
+					</div>
+					<div style="border-bottom:0.1em solid #ffffff">
+						<a href="/praiser/profile">
+							<img src="static/img/settings.png" alt="Configurações" /> Configurações
+						</a>
+					</div>
+					<div>
+						<a href="/praiser/logoff">
+							<img src="static/img/logout.png" alt="Sair"  style="width:1.4em"/> Sair
+						</a>
+					</div>
+				</div>
+				<div class="clearfix"></div>
 			</div>
-
+			<script>
+				$(".menu-dropdown").mouseover(function(){
+					$(".menu-dropdown-user").css("background-color","#4F4F4F !important");
+					$(".menu-dropdown-list").css("display","block");
+				})
+				
+				$(".menu-dropdown").mouseleave(function(){
+					$(".menu-dropdown-user").css("background-color","transparent !important");
+					$(".menu-dropdown-list").css("display","none");
+				})
+			</script>
 		
 		</sec:authorize>
 	</div>

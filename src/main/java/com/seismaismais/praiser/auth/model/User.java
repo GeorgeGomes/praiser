@@ -34,16 +34,16 @@ public class User implements Serializable{
 	@Column(name="IMAGEM_PROFILE", nullable=true)
 	private String imagemProfile;
 	
-	@Column(name="EMAIL", unique=true, nullable=false)
+	@Column(name="EMAIL", unique=true, nullable=false, length=80)
 	private String email;
 	
-	@Column(name="PASSWORD", nullable=false)
+	@Column(name="PASSWORD", nullable=false, length=30)
 	private String password;
 	
-	@Column(name="CHURCH", nullable=false)
+	@Column(name="CHURCH", nullable=false, length=30)
 	private String church;
 		
-	@Column(name="FULLNAME", nullable=false)
+	@Column(name="FULLNAME", nullable=false, length=40)
 	private String fullname;
 
 	@Column(name="STATE", nullable=false)

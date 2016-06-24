@@ -47,6 +47,17 @@ public class UserRestController {
 		return new ResponseEntity<List<User>>(users, HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "/rest/auth/user/uniqueEmail", method = RequestMethod.POST)
+	public ResponseEntity<Boolean> uniqueEmail(@RequestBody String email) {
+		Boolean emailExists = false;
+		
+		if(userService.findByEmail(email) != null){
+			emailExists = true;
+		}
+		
+		return new ResponseEntity<Boolean>(emailExists, HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = "/rest/auth/user/get", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> get() {
 		User userAuth = authenticateService.getUserRequest();
