@@ -28,8 +28,8 @@
 				</div>
 				<div class="menu-dropdown-list">
 					<div style="border-bottom:0.1em solid #ffffff">
-						<a href="dowloads">
-							<img src="static/img/download-from-cloud.png" alt="Downloads" /> Meus Slides
+						<a href="mySlides">
+							<img src="static/img/download-from-cloud.png" alt="Meus Slides" /> Meus Slides
 						</a>
 					</div>
 					<div style="border-bottom:0.1em solid #ffffff">
@@ -47,12 +47,12 @@
 			</div>
 			<script>
 				$(".menu-dropdown").mouseover(function(){
-					$(".menu-dropdown-user").css("background-color","#4F4F4F !important");
+					$(".menu-dropdown-user").css("background-color","#4F4F4F");
 					$(".menu-dropdown-list").css("display","block");
 				})
 				
 				$(".menu-dropdown").mouseleave(function(){
-					$(".menu-dropdown-user").css("background-color","transparent !important");
+					$(".menu-dropdown-user").css("background-color","transparent");
 					$(".menu-dropdown-list").css("display","none");
 				})
 			</script>

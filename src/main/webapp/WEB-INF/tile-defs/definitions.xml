@@ -23,12 +23,16 @@
 		<put-attribute name="body" value="/WEB-INF/views/explore.jsp" />
 	</definition>
 	
-	<definition name="/slide" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/slide.jsp" />
+	<definition name="/createSlide" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/createSlide.jsp" />
 	</definition>
 	
 	<definition name="/profile" extends="DefaultTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/profile.jsp" />
+	</definition>
+	
+	<definition name="/mySlides" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/mySlides.jsp" />
 	</definition>
 	
 	<definition name="/admin/font" extends="AdminTemplate">

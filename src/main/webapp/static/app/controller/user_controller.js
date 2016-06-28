@@ -136,7 +136,6 @@ App.controller('UserController', ['$scope', '$log', '$rootElement', '$mdDialog',
 			$log.debug("Update user!");
 			self.update(self.user);
 		}
-		self.reset();
 	};
 	
 	self.reset = function(){
@@ -146,7 +145,5 @@ App.controller('UserController', ['$scope', '$log', '$rootElement', '$mdDialog',
 	};
 	
 	self.get();
-	
-	
 	
 }]);

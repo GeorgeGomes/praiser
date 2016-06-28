@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -21,34 +22,27 @@ public class Slide implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Id 
+	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="SLIDE_ID")
 	private Long slideId;
 
-	@Column(name="ARTIST", nullable=false)
-	private String artist;
-	
-	@Column(name="MUSIC", nullable=false)
-	private String music;
-	
-	@Column(name="FILENAME", nullable=true)
-	private String filename;
-	
-	@Column(name="SLIDE", nullable=false)
-	@Type(type="text")
-	private String slide;
-	
-	@Column(name="WIDTH", nullable=true)
-	private Double width;
-	
-	@Column(name="HEIGHT", nullable=true)
-	private Double height;
-	
+	@Column(name="ARTIST_NAME", nullable=false)
+	private String artistName;
 
-	@Transient
-	private String[] slidesImages;
+	@Column(name="MUSIC_NAME", nullable=false)
+	private String musicName;
 	
+	@Column(name="LYRICS", nullable=false)
+	@Type(type="text")
+	private String lyrics;
+
+	@OneToOne
+	private Background background;
+	
+	@OneToOne
+	private Font font;
+
 	public Long getSlideId() {
 		return slideId;
 	}
@@ -57,60 +51,44 @@ public class Slide implements Serializable{
 		this.slideId = slideId;
 	}
 
-	public String getArtist() {
-		return artist;
+	public String getArtistName() {
+		return artistName;
 	}
 
-	public void setArtist(String artist) {
-		this.artist = artist;
+	public void setArtistName(String artistName) {
+		this.artistName = artistName;
 	}
 
-	public String getMusic() {
-		return music;
+	public String getMusicName() {
+		return musicName;
 	}
 
-	public void setMusic(String music) {
-		this.music = music;
-	}
-	
-	public String getFilename() {
-		return filename;
+	public void setMusicName(String musicName) {
+		this.musicName = musicName;
 	}
 
-	public void setFilename(String fileName) {
-		this.filename = fileName;
+	public String getLyrics() {
+		return lyrics;
 	}
 
-	public String getSlide() {
-		return slide;
+	public void setLyrics(String lyrics) {
+		this.lyrics = lyrics;
 	}
 
-	public void setSlide(String slide) {
-		this.slide = slide;
+	public Background getBackground() {
+		return background;
 	}
 
-	public String[] getSlidesImages() {
-		return slidesImages;
+	public void setBackground(Background background) {
+		this.background = background;
 	}
 
-	public void setSlidesImages(String[] slidesImages) {
-		this.slidesImages = slidesImages;
+	public Font getFont() {
+		return font;
 	}
 
-	public Double getWidth() {
-		return width;
-	}
-
-	public void setWidth(Double width) {
-		this.width = width;
-	}
-
-	public Double getHeight() {
-		return height;
-	}
-
-	public void setHeight(Double height) {
-		this.height = height;
+	public void setFont(Font font) {
+		this.font = font;
 	}
 	
 }

@@ -28,7 +28,7 @@ public class SlideRestController {
 	private SlideService slideService;
 	
 	@Autowired
-	private DownloadService downloadService;
+	//private DownloadService downloadService;
 
 	@RequestMapping(value = "/rest/slide/list", method = RequestMethod.GET)
 	public ResponseEntity<List<Slide>> list() {
@@ -50,17 +50,17 @@ public class SlideRestController {
 	}
 
 	@RequestMapping(value = "/rest/slide/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> create(@RequestBody Slide slide) {
+	public ResponseEntity<Slide> create(@RequestBody Slide slide) {
 		slideService.create(slide);
 		
-		String filename = "[]";
-		try {
-			filename = "{\"filename\":\"" + downloadService.generatePptx(slide) + "\"}";
-		} catch (IOException e) {
-			logger.error("Erro",e);
-		}
+//		String filename = "[]";
+//		try {
+//			filename = "{\"filename\":\"" + downloadService.generatePptx(slide) + "\"}";
+//		} catch (IOException e) {
+//			logger.error("Erro",e);
+//		}
 		
-		return new ResponseEntity<String>(filename, HttpStatus.CREATED);
+		return new ResponseEntity<Slide>(slide, HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "/rest/slide/update", method = RequestMethod.PUT)

@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class SlideController {
+public class MySlidesController {
 
-	@RequestMapping(value="/slide", method = RequestMethod.GET)
-	public String getSlides() {
-		return "/slide";
+	@RequestMapping(value="/mySlides", method = RequestMethod.GET)
+	public String getMySlides() {
+		return "/mySlides";
 	}
 }

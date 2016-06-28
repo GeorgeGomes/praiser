@@ -18,6 +18,7 @@
 <script src="<c:url value="/static/js/jquery.min.js"/>" charset="utf-8"></script>
 <script src="<c:url value="/static/js/jquery.overflowing.js"/>" charset="utf-8"></script>
 <script src="<c:url value="/static/js/bootstrap.min.js"/>" charset="utf-8"></script>
+<script src="<c:url value="/static/js/util.js"/>" charset="utf-8"></script>
 
 <script src="<c:url value="/static/js/html2canvas.min.js"/>" charset="utf-8"></script>
 
@@ -35,6 +36,7 @@
 <script src="<c:url value='/static/js/angular/angular-material.min.js' />" charset="utf-8"></script>
 <script src="<c:url value='/static/js/angular/angular-file-upload.min.js' />" charset="utf-8"></script>
 <script src="<c:url value='/static/js/angular/angular-validation-match.min.js' />" charset="utf-8"></script>
+<script src="<c:url value='/static/js/angular/angular-route.js' />" charset="utf-8"></script>
 
 
 <script src="<c:url value='/static/js/jquery-te-1.4.0.min.js' />" charset="utf-8"></script>

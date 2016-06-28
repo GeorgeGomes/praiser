@@ -201,13 +201,15 @@ a.apaga-acende {
 	background-position: center;
   	background-repeat:no-repeat;
   	background-size:100px 100px;
+  	width:200px;
+	height:150px;
 }
 
-.slideNew {
-	background-image: url(../img/new.png);
-	background-position: center;
-  	background-repeat:no-repeat;
-  	background-size:100px 100px;
+.slide-new {
+	background-image: url(../img/new.png) !important;
+	background-position: center !important;
+  	background-repeat:no-repeat !important;
+  	background-size:100px 100px !important;
 }
 
 .slide{
@@ -546,7 +548,7 @@ html, body {
 	color:#00b0f5;
 	font-weight:normal;
 }
-.btn-ratio-border{
+.btn-selected{
 	border:0.2em solid #000000;
 }
 
@@ -653,3 +655,12 @@ html, body {
 	width:1.4em;
 }
 
+.thumb-slide{
+	margin:0.2em;
+	position:relative;
+	float:left;
+	width:200px;
+	height:150px;
+	font-size:0.8em;
+	background-size:200px 150px;
+}

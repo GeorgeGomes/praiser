@@ -50,8 +50,8 @@ App.factory('SlideService', ['$http', '$q', '$rootElement', '$location', '$log',
 			
 		},
 		
-		get: function(){
-			return $http.get(path + '/' + app + '/rest/slide/get')
+		get: function(slideId){
+			return $http.get(path + '/' + app + '/rest/slide/get/'+slideId)
 					.then(
 							function(response){
 								return response.data;

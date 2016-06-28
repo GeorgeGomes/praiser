@@ -4,7 +4,7 @@
 
 <div style="padding-top:0.2em;padding-bottom:0.2em;font-size:3em;font-weight:bold">Profile</div>
 <div style="clear:both"></div>
-	<div style="background-color: #ffffff; border: 1px solid red; width: 300px; float: left">
+	<div style="background-color: #ffffff; width: 400px; float: left">
 		<img ng-src="{{ ctrl.user.imagemProfile != null && '/praiser/uploads/user/' + ctrl.user.imagemProfile || 'static/img/default-user.png' }}" style="display: block; margin: 0 auto; border-radius: 100%; width: 120px; height: 120px; border: 4px solid #ffffff" />
 		
 
@@ -25,9 +25,9 @@
 		</form>
 
 	</div>
-	<div style="background-color: #ffffff; border: 1px solid red; width: 650px; float: left">
+	<div style="background-color: #ffffff; width: 550px; float: left">
 		<form name="myForm" ng-submit="ctrl.submit()">
-			<div style="padding-top: 4em; padding-bottom: 4em; width: 100%">
+			<div style="width: 100%">
 				<div style="max-width: 48em; margin: 0 auto">
 					<div style="margin: 0 auto; width: 22em; float: left">
 						<div style="margin-bottom: 0.8em">

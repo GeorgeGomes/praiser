@@ -36,24 +36,24 @@ public class DownloadController {
 		return "/download";
 	}
 
-	@RequestMapping(value = "/download/{filename}", method = RequestMethod.GET)
-	 public ResponseEntity<byte[]> getDownloadData(@PathVariable String filename)
-	 throws Exception {
-	 Slide slide = slideService.findByFilename(filename);
-	
-	 FileInputStream pptFile = new FileInputStream(environment.getRequiredProperty("app.archive.upload.user") + slide.getFilename() + ".pptx");
-	 
-	 byte[] output = IOUtils.toByteArray(pptFile);
-			 
-	 HttpHeaders responseHeaders = new HttpHeaders();
-	 responseHeaders.set("charset", "utf-8");
-	 responseHeaders.setContentType(
-	 MediaType.valueOf("application/vnd.openxmlformats-officedocument.presentationml.presentation"));
-	 responseHeaders.setContentLength(output.length);
-	 responseHeaders.set("Content-disposition", "attachment;filename=MeuPraiser.pptx");
-	
-	 return new ResponseEntity<byte[]>(output, responseHeaders,
-	 HttpStatus.OK);
-	 }
+//	@RequestMapping(value = "/download/{filename}", method = RequestMethod.GET)
+//	 public ResponseEntity<byte[]> getDownloadData(@PathVariable String filename)
+//	 throws Exception {
+//	 Slide slide = slideService.findByFilename(filename);
+//	
+//	 //FileInputStream pptFile = new FileInputStream(environment.getRequiredProperty("app.archive.upload.user") + slide.getFilename() + ".pptx");
+//	 
+//	// byte[] output = IOUtils.toByteArray(pptFile);
+//			 
+//	 HttpHeaders responseHeaders = new HttpHeaders();
+//	 responseHeaders.set("charset", "utf-8");
+//	 responseHeaders.setContentType(
+//	 MediaType.valueOf("application/vnd.openxmlformats-officedocument.presentationml.presentation"));
+//	 responseHeaders.setContentLength(output.length);
+//	 responseHeaders.set("Content-disposition", "attachment;filename=MeuPraiser.pptx");
+//	
+//	 return new ResponseEntity<byte[]>(output, responseHeaders,
+//	 HttpStatus.OK);
+//	 }
 
 }
