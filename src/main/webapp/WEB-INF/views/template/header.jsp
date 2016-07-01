@@ -3,7 +3,7 @@
 
 <div style="background-color: #000000; width: 100%; padding: 1em; color: #ffffff">
 	<div style="font-size: 2em; float: left; width: 3em">
-		<a href="/praiser/" style="color: #ffffff"><img src="static/img/logo-praiser.png" alt="" style="width:120px"/></a>
+		<a href="/praiser/" style="color: #ffffff"><img src="<c:url value='/static/img/logo-praiser.png' />" alt="" style="width:120px"/></a>
 	</div>
 	
 		

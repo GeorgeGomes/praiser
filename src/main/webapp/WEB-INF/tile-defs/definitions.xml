@@ -23,8 +23,16 @@
 		<put-attribute name="body" value="/WEB-INF/views/explore.jsp" />
 	</definition>
 	
-	<definition name="/createSlide" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/createSlide.jsp" />
+	<definition name="/slide/new" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/newSlide.jsp" />
+	</definition>
+	
+	<definition name="/slide/edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/editSlide.jsp" />
+	</definition>
+	
+	<definition name="/play" extends="EmptyTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/play.jsp" />
 	</definition>
 	
 	<definition name="/profile" extends="DefaultTemplate">

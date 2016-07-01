@@ -13,7 +13,7 @@
 			<div id="upload" ng-show="ctrl.statusUpload" style="width:33em;margin:8em auto">
 				<div style="width:31em;margin:8em auto">
 					<input ng-model="ctrl.music" ng-change="ctrl.searchMusic()" style="float:left;display:block;border-right:0px;border-left:1px solid #BEBEBE;border-top:1px solid #BEBEBE;border-bottom:1px solid #BEBEBE;font-size:1.4em;padding:0.2em;width:20em;height:40px" type="text" name="musica" id="musica" placeholder="Qual música você quer?"/>
-	   				<div style="width:3em;height:40px;border-bottom:1px solid #BEBEBE;border-left:0px;border-top:1px solid #BEBEBE;border-right:1px solid #BEBEBE;float:left"><img src="static/img/search.png" alt="Buscar" width="30" style="margin:5px"/></div>
+	   				<div style="width:3em;height:40px;border-bottom:1px solid #BEBEBE;border-left:0px;border-top:1px solid #BEBEBE;border-right:1px solid #BEBEBE;float:left"><img src="<c:url value='/static/img/search.png' />" alt="Buscar" width="30" style="margin:5px"/></div>
 	   				<div class="clearfix"></div>
 	   				<div>
 	   					<div style="position:absolute">		   					
@@ -40,13 +40,10 @@
 						<div class="titlePersonalise">
 								<div style="">Cor:</div>
 						</div>
-						<div class="titlePersonalise">
-								<div style="">Formato:</div>
-						</div>
 						<div class="clearfix"></div>
 						<div class="content-personalise">
 							<div class="content-fonts">
-								<div style="height:17em;overflow-y:hidden;position: absolute;width: 28%;background-color: #fafafa">
+								<div style="height:17em;overflow-y:hidden;position: absolute;width: 38%;background-color: #fafafa">
 									<div class="mlOverflow_text">
 										<div ng-repeat="font in ctrl.fonts track by $index" style="font-family:{{font.font}}" class="btn-font" ng-click="ctrl.changeFont(font)">
 											<div>{{font.font}}</div>
@@ -68,13 +65,7 @@
 									<div class="clearfix"></div>
 								</div>
 							</div>
-							<div class="content-ratios">
-								<div>
-									<div class="btn-ratio {{ctrl.ratio == '4:3' ? 'btn-selected' : ''}}" style="width:100px" ng-click="ctrl.selectRatio('4:3')">4:3</div>
-			 						<div class="btn-ratio {{ctrl.ratio == '16:9' ? 'btn-selected' : ''}}" style="width:133px;margin:1em auto" ng-click="ctrl.selectRatio('16:9')">16:9</div>
-			 						<div class="clearfix"></div>
-			 					</div>
-							</div>
+							
 							<div class="clearfix"></div>
 						</div>
 						
@@ -96,7 +87,7 @@
 					 		<div class="clearfix"></div>
 					 		<div style="padding-top:2em">
 					 			<button type="button" ng-click="ctrl.back()" class="btn-back">Voltar</button>
-								<button type="button" ng-click="ctrl.saveSlide2()" class="btn-download"><img src="static/img/download-from-cloud.png" alt="download" width="30" style="margin:5px"/>Salvar</button>
+								<button type="button" ng-click="ctrl.saveSlide2()" class="btn-download"><img src="<c:url value='/static/img/download-from-cloud.png' />" alt="download" width="30" style="margin:5px"/>Salvar</button>
 							</div>
 				 		</div>
 					 </div>
@@ -236,4 +227,4 @@ if (height2 > 35)
 <script src="<c:url value='/static/app/service/background_service.js' />" charset="utf-8"></script>
 <script src="<c:url value='/static/app/service/font_service.js' />" charset="utf-8"></script>
 <script src="<c:url value='/static/app/service/slide_service.js' />" charset="utf-8"></script>
-<script src="<c:url value='/static/app/controller/slide_controller.js' />" charset="utf-8"></script>
+<script src="<c:url value='/static/app/controller/newSlide_controller.js' />" charset="utf-8"></script>

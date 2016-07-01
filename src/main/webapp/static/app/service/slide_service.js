@@ -67,7 +67,7 @@ App.factory('SlideService', ['$http', '$q', '$rootElement', '$location', '$log',
 			return $http.post(path + '/' + app + '/rest/slide/create', slide)
 					.then(
 							function(response){
-								return response;
+								return response.data;
 							},
 							function(errResponse){
 								return $q.reject(errResponse);

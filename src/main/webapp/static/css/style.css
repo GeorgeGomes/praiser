@@ -178,6 +178,20 @@ a.apaga-acende {
 	-webkit-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
+	text-align:center;
+}
+
+.slidePlay{
+	position: absolute;
+	
+}
+
+.slideShow{
+	display: block;
+}
+
+.slideHide{
+	display: none;
 }
 
 .slideDelete{
@@ -468,7 +482,7 @@ html, body {
 	height: 22em;
 }
 .content-fonts{
-	width:33%;
+	width:48%;
 	float:left;
 	padding:1em;
 	height:18em;
@@ -476,19 +490,13 @@ html, body {
 }
 
 .content-backgrounds{
-	width:34%;
+	width:48%;
 	float:left;
 	padding:1em;
 	height:18em;
 	border-right:0.3em solid #ffffff;
 }
 
-.content-ratios{
-	width:33%;
-	float:left;
-	padding:1em;
-	height:18em;
-}
 
 .content-preview{
 	padding:3em;

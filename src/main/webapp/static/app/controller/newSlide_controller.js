@@ -7,7 +7,7 @@ App.controller('SlideController', ['$scope', '$log', '$sce', '$mdDialog', '$loca
 	
 	console.log(getSegment($location.absUrl(), 4));
 	
-
+	self.editMode = false;
 	
 	self.fonts=[];
 	self.backgrounds=[];
@@ -149,7 +149,21 @@ App.controller('SlideController', ['$scope', '$log', '$sce', '$mdDialog', '$loca
 		SlideService.get(slideId)
 			.then(
 				function(response){
+					
 					self.slide = response;
+					
+					self.phases = self.slide.lyrics.split("\\n\\n");
+					
+					for(var x=0; x < self.phases.length; x++){
+						var txt = '';
+						var arr = self.phases[x].split("\\n");
+						for(var i=0; i < arr.length; i++){
+							txt += "<div>" + arr[i] + "</div>";
+						}
+						self.phases[x] = "<div>"+txt+"</div>";
+					}
+					
+					
 				},
 				function(errResponse){
 					console.error("Erro ao buscar os backgrounds (listSlides)");
@@ -470,24 +484,14 @@ App.controller('SlideController', ['$scope', '$log', '$sce', '$mdDialog', '$loca
 					function(response){
 						self.downloadStep = 3;
 						console.log(response);
-						console.log(response.data);
-						console.log(response.data.slideId)
-						location = "/praiser/createSlide/"+response.data.slideId;
+						console.log(response.slideId)
+						location = "/praiser/slide/"+response.slideId;
 					},
 					function(errResponse){
 						$log.error("Error on create!")
 					}
 			);
 	};
-	
-	if(getSegment($location.absUrl(), 4) != ""){
-		console.log("edit")
-		self.getSlides(getSegment($location.absUrl(), 4));
-		self.statusUpload = false;
-		self.statusPersonalize = true;
-	}else{
-		console.log("new")
-	}
 	
 	
 }]);
