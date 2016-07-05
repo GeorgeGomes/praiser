@@ -1,0 +1,35 @@
+@CHARSET "ISO-8859-1";
+
+html, body {
+	background-color: #ffffff !important;
+	margin:0px;
+	padding:0px;
+	overflow:hidden;
+}
+
+.slideContent{
+	position:relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+	text-align:center;
+}
+
+.slidePlay{
+	position: absolute;
+	
+}
+
+.slideShow{
+	display: block;
+}
+
+.slideHide{
+	display: none;
+}
+
+
+.clearfix{
+	clear:both;
+}

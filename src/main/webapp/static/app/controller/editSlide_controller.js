@@ -336,7 +336,7 @@ App.controller('SlideController', ['$scope', '$log', '$sce', '$mdDialog', '$loca
 		self.statusPersonalize = false;
 	};
 	
-	self.download = function(){
+	self.downloadSlide = function(){
 		self.downloadStep = 1;
 		$('#myModal').modal();
 	}
@@ -457,13 +457,17 @@ App.controller('SlideController', ['$scope', '$log', '$sce', '$mdDialog', '$loca
 		//self.createImageSlide(self.createImageSlide, 0);
 //		self.create();
 		
-		if(self.slide.slideId == null){
-			self.create(self.slide);
-		}else{
-			self.update(self.slide);
-		}
+//		if(self.slide.slideId == null){
+//			self.create(self.slide);
+//		}else{
+//			self.update(self.slide);
+//		}
+		
+		location = "/praiser/download/"+ self.slide.slideId;
 		
 	}
+	
+	
 	self.createImageSlide = function(callback, index){
 		var obj = $(".slideSave:eq("+index+")"); 
 		

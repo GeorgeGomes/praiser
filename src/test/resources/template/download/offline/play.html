@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+<head>
+<title>Praiser - Play</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link rel="stylesheet" href="contents/css/style.css" charset="utf-8" />
+
+<script src="contents/js/jquery.min.js" charset="utf-8"></script>
+
+<style>
+@font-face {
+	font-family: teste;
+	src: url(contents/fonts/teste.ttf);
+}
+
+.slide{
+	border:1px solid #000000;
+	width:100%;
+	color: red;
+	background-image:url(contents/img/teste.gif);
+	font-family:teste;
+}
+
+</style>
+
+<script>
+var phases = 3;
+</script>
+
+</head>
+<body>
+
+<div class="slidePlay slideHide slide" id="slide-1">
+	<div class="slideContent">Conteudo Aqui1</div>
+</div>
+
+<div class="slidePlay slideHide slide" id="slide-2">
+	<div class="slideContent">Conteudo Aqui2</div>
+</div>
+
+<div class="slidePlay slideHide slide" id="slide-3">
+	<div class="slideContent">Conteudo Aqui3</div>
+</div>
+
+<script>
+
+
+
+
+		var height = $( document ).height();	
+		var width = $( document ).width();
+		
+		$(".slidePlay").css("height", height);
+		$(".slidePlay").css("font-size", width/300 + "em");
+
+		var hash = location.hash;
+		if(hash == ""){
+			location.href = location.href + "#slide-1";
+			hash = location.hash;
+		}
+
+		$(hash).removeClass("slideHide");
+		$(hash).addClass("slideShow");
+		
+		
+
+		
+		
+		$("body").keydown(function(e){
+			    // left arrow
+			    
+			    console.log("down"+e.keyCode)
+			    console.log("down"+e.which)
+			    
+			    //left
+			    if ((e.keyCode || e.which) == 37 || (e.keyCode || e.which) == 65){   
+			    	var hash = location.hash;
+			    	var num = hash.split("-");
+			    	num = parseInt(num[1]);
+			    	if(num > 1){
+						num--
+						location.href = location.href.split("#")[0] + "#slide-" + num;
+
+						hash = location.hash;
+						$(".slidePlay").addClass("slideHide");
+						$(hash).removeClass("slideHide");
+						$(hash).addClass("slideShow");
+					}
+			    }
+			    
+			    //right
+			    if ((e.keyCode || e.which) == 39 || (e.keyCode || e.which) == 68){
+			    	var hash = location.hash;
+			    	var num = hash.split("-");
+			    	num = parseInt(num[1]);
+	 		    	if(num < phases){
+						num++
+						location.href = location.href.split("#")[0] + "#slide-" + num;
+
+						hash = location.hash;
+						$(".slidePlay").addClass("slideHide");
+						$(hash).removeClass("slideHide");
+						$(hash).addClass("slideShow");
+	 				}
+			    }   
+		});
+
+
+
+
+
+
+
+	$(window).resize(function(){
+		console.log("resize")
+		var height = $( document ).height();	
+		var width = $( document ).width();
+		
+		$(".slidePlay").css("height", height);
+		$(".slidePlay").css("font-size", width/300 + "em");
+	})	
+</script>
+	
+	
+</body>
+</html>
+

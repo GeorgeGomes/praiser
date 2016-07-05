@@ -78,6 +78,7 @@
 				 	</div>
 				 	
 				 		<div style="padding-top:2em">
+				 			<button ng-show="!ctrl.editMode" type="button" ng-click="ctrl.downloadSlide()" class="btn-download"><img src="<c:url value='/static/img/download-from-cloud.png' />" alt="play" width="30" style="margin:5px"/>Download</button>
 				 			<button ng-show="!ctrl.editMode" type="button" ng-click="ctrl.playSlide()" class="btn-download"><img src="<c:url value='/static/img/download-from-cloud.png' />" alt="play" width="30" style="margin:5px"/>Play</button>
 							<button ng-show="!ctrl.editMode" type="button" ng-click="ctrl.editSlide()" class="btn-download"><img src="<c:url value='/static/img/download-from-cloud.png' />" alt="Editar" width="30" style="margin:5px"/>Editar</button>
 							<button ng-show="ctrl.editMode" type="button" ng-click="ctrl.saveSlide2()" class="btn-download"><img src="<c:url value='/static/img/download-from-cloud.png' />" alt="download" width="30" style="margin:5px"/>Salvar</button>
